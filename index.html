@@ -568,241 +568,6 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
 
 </section>
 
-<!-- CLIENT MARQUEE -->
-<style>
-.clients-strip{
-  background:var(--navy-2);
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:1.75rem 0;
-  overflow:hidden;
-}
-.clients-header{
-  max-width:1160px;margin:0 auto;
-  padding:0 2.5rem 1.25rem;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:1rem;
-}
-.clients-header-label{
-  font-family:'IBM Plex Mono',monospace;font-size:0.67rem;
-  letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-2);
-}
-.sector-pills{display:flex;flex-wrap:wrap;gap:6px}
-.sector-pill{
-  font-family:'IBM Plex Mono',monospace;font-size:0.62rem;
-  letter-spacing:0.04em;padding:4px 10px;border-radius:20px;
-  border:1px solid var(--line);color:var(--grey-2);background:transparent;
-}
-.sector-pill.s-banking{color:#60a5fa;border-color:rgba(96,165,250,0.3);background:rgba(96,165,250,0.06)}
-.sector-pill.s-insurance{color:#34d399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.06)}
-.sector-pill.s-utility{color:#fbbf24;border-color:rgba(251,191,36,0.3);background:rgba(251,191,36,0.06)}
-.sector-pill.s-aviation{color:#a78bfa;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.06)}
-.sector-pill.s-tech{color:var(--teal);border-color:var(--teal-line);background:var(--teal-dim)}
-.sector-pill.s-retail{color:#f87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.06)}
-.sector-pill.s-mining{color:#fb923c;border-color:rgba(251,146,60,0.3);background:rgba(251,146,60,0.06)}
-.sector-pill.s-energy{color:#4ade80;border-color:rgba(74,222,128,0.3);background:rgba(74,222,128,0.06)}
-
-.marquee-track{
-  display:flex;
-  width:max-content;
-  animation:marquee-scroll 30s linear infinite;
-}
-.marquee-track:hover{animation-play-state:paused}
-
-@keyframes marquee-scroll{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-
-.client-item{
-  display:flex;align-items:center;gap:12px;
-  padding:0 2.5rem;
-  flex-shrink:0;
-  border-right:1px solid var(--line);
-}
-.client-logo{
-  width:44px;height:44px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:800;
-  flex-shrink:0;
-}
-.client-info{}
-.client-name{font-size:0.9rem;font-weight:600;color:var(--white);line-height:1}
-.client-sector{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;letter-spacing:0.04em;text-transform:uppercase;margin-top:3px}
-
-/* Client brand colours */
-.logo-nab{background:rgba(220,50,50,0.15);color:#e05555;border:1px solid rgba(220,50,50,0.25)}
-.logo-anz{background:rgba(0,90,160,0.15);color:#4a9ede;border:1px solid rgba(0,90,160,0.3)}
-.logo-iag{background:rgba(0,130,80,0.15);color:#34d399;border:1px solid rgba(0,130,80,0.3)}
-.logo-bupa{background:rgba(0,100,180,0.15);color:#60a5fa;border:1px solid rgba(0,100,180,0.3)}
-.logo-aus{background:rgba(255,120,0,0.12);color:#fb923c;border:1px solid rgba(255,120,0,0.25)}
-.logo-dyno{background:rgba(220,50,50,0.12);color:#f87171;border:1px solid rgba(220,50,50,0.25)}
-.logo-inc{background:rgba(251,191,36,0.12);color:#fbbf24;border:1px solid rgba(251,191,36,0.25)}
-.logo-ibm{background:rgba(0,120,215,0.15);color:#60a5fa;border:1px solid rgba(0,120,215,0.3)}
-.logo-col{background:rgba(220,50,50,0.12);color:#f87171;border:1px solid rgba(220,50,50,0.25)}
-.logo-ori{background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.25)}
-</style>
-
-<div class="clients-strip">
-  <div class="clients-header">
-    <span class="clients-header-label">Trusted by leading organisations</span>
-    <div class="sector-pills">
-      <span class="sector-pill s-banking">Banking</span>
-      <span class="sector-pill s-insurance">Insurance</span>
-      <span class="sector-pill s-utility">Utility</span>
-      <span class="sector-pill s-aviation">Aviation</span>
-      <span class="sector-pill s-tech">Technology</span>
-      <span class="sector-pill s-retail">Retail</span>
-      <span class="sector-pill s-mining">Mining</span>
-      <span class="sector-pill s-energy">Energy</span>
-    </div>
-  </div>
-
-  <div class="marquee-track">
-    <!-- Set 1 -->
-    <div class="client-item">
-      <div class="client-logo logo-nab">NAB</div>
-      <div class="client-info">
-        <div class="client-name">NAB</div>
-        <div class="client-sector s-banking">Banking</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-anz">ANZ</div>
-      <div class="client-info">
-        <div class="client-name">ANZ</div>
-        <div class="client-sector s-banking">Banking</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-iag">IAG</div>
-      <div class="client-info">
-        <div class="client-name">IAG</div>
-        <div class="client-sector s-insurance">Insurance</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-bupa">BPA</div>
-      <div class="client-info">
-        <div class="client-name">BUPA</div>
-        <div class="client-sector s-insurance">Insurance</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-aus">AUS</div>
-      <div class="client-info">
-        <div class="client-name">AusNet</div>
-        <div class="client-sector s-utility">Utility</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-dyno">DYN</div>
-      <div class="client-info">
-        <div class="client-name">Dyno Nobel</div>
-        <div class="client-sector s-mining">Mining</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-inc">INC</div>
-      <div class="client-info">
-        <div class="client-name">Incitec Pivot</div>
-        <div class="client-sector s-mining">Mining</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-ibm">IBM</div>
-      <div class="client-info">
-        <div class="client-name">IBM</div>
-        <div class="client-sector s-tech">Technology</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-col">COL</div>
-      <div class="client-info">
-        <div class="client-name">Coles</div>
-        <div class="client-sector s-retail">Retail</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-ori">ORI</div>
-      <div class="client-info">
-        <div class="client-name">Origin Energy</div>
-        <div class="client-sector s-energy">Energy</div>
-      </div>
-    </div>
-    <!-- Set 2 — duplicate for seamless loop -->
-    <div class="client-item">
-      <div class="client-logo logo-nab">NAB</div>
-      <div class="client-info">
-        <div class="client-name">NAB</div>
-        <div class="client-sector s-banking">Banking</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-anz">ANZ</div>
-      <div class="client-info">
-        <div class="client-name">ANZ</div>
-        <div class="client-sector s-banking">Banking</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-iag">IAG</div>
-      <div class="client-info">
-        <div class="client-name">IAG</div>
-        <div class="client-sector s-insurance">Insurance</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-bupa">BPA</div>
-      <div class="client-info">
-        <div class="client-name">BUPA</div>
-        <div class="client-sector s-insurance">Insurance</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-aus">AUS</div>
-      <div class="client-info">
-        <div class="client-name">AusNet</div>
-        <div class="client-sector s-utility">Utility</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-dyno">DYN</div>
-      <div class="client-info">
-        <div class="client-name">Dyno Nobel</div>
-        <div class="client-sector s-mining">Mining</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-inc">INC</div>
-      <div class="client-info">
-        <div class="client-name">Incitec Pivot</div>
-        <div class="client-sector s-mining">Mining</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-ibm">IBM</div>
-      <div class="client-info">
-        <div class="client-name">IBM</div>
-        <div class="client-sector s-tech">Technology</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-col">COL</div>
-      <div class="client-info">
-        <div class="client-name">Coles</div>
-        <div class="client-sector s-retail">Retail</div>
-      </div>
-    </div>
-    <div class="client-item">
-      <div class="client-logo logo-ori">ORI</div>
-      <div class="client-info">
-        <div class="client-name">Origin Energy</div>
-        <div class="client-sector s-energy">Energy</div>
-      </div>
-    </div>
-  </div>
-</div>
 ══════════════════════════════════════════════ -->
 <div class="div-banner">
   <div class="dbl dbl-cyber"></div>
@@ -1029,6 +794,26 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
       <div>
         <p>Our international team spans <strong>Sydney, India, and San Francisco</strong>, giving us the reach to support clients across Asia-Pacific, North America, and beyond. We combine deep technical engineering with genuine product thinking — every agent we build is designed to be practical, reliable, and immediately impactful.</p>
         <p>Alongside our AI Agent practice, Xfiniti runs an enterprise <strong>cybersecurity division</strong> and a <strong>consumer apps portfolio</strong> — making us one of a rare group of technology companies operating successfully across all three disciplines simultaneously.</p>
+      </div>
+    </div>
+
+    <!-- SECTOR EXPERIENCE -->
+    <div style="margin-bottom:3rem;" class="reveal">
+      <p class="eyebrow ey-teal" style="margin-bottom:1rem">Industries We've Served</p>
+      <p style="font-size:0.9rem;color:var(--grey-1);font-weight:300;max-width:620px;margin-bottom:1.5rem;line-height:1.75">Our AI Agents and technology solutions have been designed, built, and deployed across some of Australia's most demanding sectors — for organisations ranging from ASX-listed enterprises to fast-growing SMEs.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(96,165,250,0.3);color:#60a5fa;background:rgba(96,165,250,0.07)">🏦 Banking &amp; Financial Services</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(52,211,153,0.3);color:#34d399;background:rgba(52,211,153,0.07)">🛡️ Insurance</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(251,191,36,0.3);color:#fbbf24;background:rgba(251,191,36,0.07)">⚡ Utilities &amp; Infrastructure</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(74,222,128,0.3);color:#4ade80;background:rgba(74,222,128,0.07)">🌿 Energy</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(40,195,175,0.3);color:var(--teal);background:var(--teal-dim)">💻 Technology</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(248,113,113,0.3);color:#f87171;background:rgba(248,113,113,0.07)">🛒 Retail</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(251,146,60,0.3);color:#fb923c;background:rgba(251,146,60,0.07)">⛏️ Mining &amp; Resources</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(167,139,250,0.3);color:#a78bfa;background:rgba(167,139,250,0.07)">✈️ Aviation</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(244,114,182,0.3);color:#f472b6;background:rgba(244,114,182,0.07)">🏥 Healthcare</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(148,163,184,0.3);color:#94a3b8;background:rgba(148,163,184,0.07)">🏛️ Government</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(251,191,36,0.3);color:#fbbf24;background:rgba(251,191,36,0.07)">🏭 Manufacturing</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(52,211,153,0.3);color:#34d399;background:rgba(52,211,153,0.07)">📡 Telecommunications</span>
       </div>
     </div>
 
