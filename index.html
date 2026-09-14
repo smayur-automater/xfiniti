@@ -744,50 +744,239 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
 <!-- ══════════════════════════════════════════════
      ABOUT
 ══════════════════════════════════════════════ -->
+<style>
+/* Additional About styles */
+.about-intro{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:4rem;align-items:start}
+.about-intro p{font-size:0.95rem;color:var(--grey-1);line-height:1.85;font-weight:300;margin-bottom:1rem}
+.about-intro strong{color:var(--white);font-weight:600}
+
+.agents-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:3rem}
+.agent-card{background:var(--navy-card);padding:1.75rem 1.6rem;transition:background 0.2s}
+.agent-card:hover{background:var(--navy-3)}
+.agent-icon{font-size:1.6rem;margin-bottom:0.85rem;display:block}
+.agent-card h4{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
+.agent-card p{font-size:0.82rem;color:var(--grey-1);line-height:1.65;font-weight:300}
+.agent-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:0.75rem}
+
+.tech-section{margin-bottom:3.5rem}
+.tech-section h3{font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:1.25rem}
+.tech-row{display:flex;flex-wrap:wrap;gap:8px}
+.tech-pill{
+  font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+  letter-spacing:0.03em;padding:7px 14px;border-radius:20px;
+  border:1px solid var(--line);color:var(--grey-1);
+  background:var(--navy-card);transition:border-color 0.2s,color 0.2s;
+}
+.tech-pill:hover{border-color:var(--teal);color:var(--teal)}
+.tech-pill.grad-pill{
+  background:linear-gradient(135deg,rgba(100,120,220,0.12),rgba(40,195,175,0.12));
+  border-color:rgba(40,195,175,0.3);color:var(--teal);
+}
+
+.offices-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:3.5rem}
+.office-card{background:var(--navy-card);padding:1.6rem 1.5rem}
+.office-flag{font-size:1.5rem;margin-bottom:0.6rem;display:block}
+.office-card h4{font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:0.3rem}
+.office-card .o-role{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem}
+.office-card p{font-size:0.82rem;color:var(--grey-1);line-height:1.6;font-weight:300}
+.office-card a{color:var(--teal);text-decoration:none;font-size:0.82rem}
+.office-card a:hover{opacity:0.7}
+
+.founder-strip{display:grid;grid-template-columns:160px 1fr;gap:2.5rem;align-items:start;padding:2rem;background:var(--navy-card);border:1px solid var(--line);border-radius:8px}
+.f-portrait-sm{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--navy-3),var(--navy-2));border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--teal);margin-bottom:0.75rem}
+.f-name-sm{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:2px}
+.f-role-sm{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--teal);margin-bottom:2px}
+.f-company-sm{font-size:0.78rem;color:var(--grey-2)}
+.founder-bio-text p{font-size:0.9rem;color:var(--grey-1);line-height:1.82;font-weight:300;margin-bottom:0.9rem;max-width:680px}
+.founder-bio-text strong{color:var(--white);font-weight:600}
+.founder-bio-text blockquote{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;color:var(--white);border-left:3px solid var(--teal);padding-left:1.1rem;margin-bottom:1.25rem;line-height:1.5}
+
+@media(max-width:980px){
+  .about-intro{grid-template-columns:1fr}
+  .agents-grid{grid-template-columns:1fr}
+  .offices-row{grid-template-columns:1fr}
+  .founder-strip{grid-template-columns:1fr}
+}
+</style>
+
 <div class="about-bg">
   <div class="sw" id="about">
-    <p class="eyebrow ey-grad reveal">About · Founder</p>
-    <h2 class="title-lg reveal">Built by someone<br>who leads both.</h2>
 
-    <div class="founder-grid">
-      <div class="reveal">
-        <div class="f-portrait">MS</div>
-        <p class="f-name">Mayur Shah</p>
-        <p class="f-role">Founder &amp; CEO</p>
-        <p class="f-company">Xfiniti Technologies Pty Ltd</p>
-        <div class="f-chips">
-          <span class="chip">Agentic AI SOC</span>
-          <span class="chip">AI Adoption &amp; Build</span>
-          <span class="chip">Automation Workflow</span>
-          <span class="chip">Sydney, AU · 20+ Years</span>
-        </div>
+    <p class="eyebrow ey-grad reveal">About Xfiniti Technologies</p>
+    <h2 class="title-lg reveal">We build AI Agents that work<br>so your team doesn't have to.</h2>
+
+    <div class="about-intro reveal">
+      <div>
+        <p>Xfiniti Technologies is an <strong>AI product development company</strong> designing and deploying intelligent AI Agents for businesses of all sizes — from global enterprises to local retailers. We help organisations automate their most time-consuming processes, integrate AI into their existing workflows, and build proprietary agents that deliver measurable outcomes.</p>
+        <p>Whether you need an AI Agent that handles customer enquiries around the clock, automates your back-office operations, or monitors and responds to cybersecurity threats autonomously — we build, train, and deploy it end-to-end.</p>
       </div>
-      <div class="f-body reveal d1">
-        <blockquote>"Security without intelligence is just reaction. I built Xfiniti to be the company that's always one move ahead."</blockquote>
-
-        <div class="pillars">
-          <div class="pillar">
-            <div class="pillar-icon">🤖</div>
-            <h4>Agentic AI SOC</h4>
-            <p>Autonomous agents triage alerts, orchestrate responses, and learn — delivering true 24×7 operations without the human bottleneck.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">⚡</div>
-            <h4>AI Adoption &amp; Build</h4>
-            <p>End-to-end AI programs: strategy, model selection, and production deployment using frontier models including Claude and GPT-4.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">⚙️</div>
-            <h4>Automation Workflow</h4>
-            <p>SOAR, Logic Apps, ServiceNow, and Cribl pipelines that eliminate manual overhead and connect every security control.</p>
-          </div>
-        </div>
-
-        <p style="margin-top:1.5rem">Mayur Shah is the founder and CEO of Xfiniti Technologies — a Sydney-based company at the forefront of Agentic AI, enterprise cybersecurity, and AI-powered consumer software.</p>
-        <p>With 20+ years across IT Security Operations, DevSecOps, Cloud Computing, Infrastructure, Virtualisation, Databases, DR/BCP, and IT Compliance, Mayur has delivered outcomes for some of Australia's most complex organisations including <strong>NAB, ANZ, IAG, BUPA, and AusNet</strong> — across banking, government, telecom, manufacturing, hospitality, and professional services.</p>
-        <p>In parallel, Mayur leads Xfiniti's consumer software division — personally overseeing the architecture and launch of <strong>TinyLearner</strong>, <strong>CoParent Share</strong>, and a <strong>Journaling App</strong> — each powered by frontier AI models, and each reflecting his belief that great technology should be intelligent, human-centred, and genuinely useful.</p>
+      <div>
+        <p>Our international team spans <strong>Sydney, India, and San Francisco</strong>, giving us the reach to support clients across Asia-Pacific, North America, and beyond. We combine deep technical engineering with genuine product thinking — every agent we build is designed to be practical, reliable, and immediately impactful.</p>
+        <p>Alongside our AI Agent practice, Xfiniti runs an enterprise <strong>cybersecurity division</strong> and a <strong>consumer apps portfolio</strong> — making us one of a rare group of technology companies operating successfully across all three disciplines simultaneously.</p>
       </div>
     </div>
+
+    <!-- AI AGENTS -->
+    <p class="eyebrow ey-teal reveal" style="margin-bottom:1.25rem">AI Agent Portfolio</p>
+    <div class="agents-grid">
+
+      <div class="agent-card reveal">
+        <span class="agent-icon">🛒</span>
+        <h4>Retail AI Agents</h4>
+        <p>Intelligent agents that handle product recommendations, inventory queries, order tracking, abandoned cart recovery, and customer support — 24×7, across web, app, and messaging channels.</p>
+        <div class="agent-tags">
+          <span class="tag tt">E-Commerce</span><span class="tag tt">Customer Support</span><span class="tag tt">Retail Ops</span>
+        </div>
+      </div>
+
+      <div class="agent-card reveal d1">
+        <span class="agent-icon">⚙️</span>
+        <h4>Business Process Agents</h4>
+        <p>End-to-end automation of repetitive business workflows — invoice processing, HR onboarding, procurement approvals, reporting, and compliance checks — fully integrated with your existing systems.</p>
+        <div class="agent-tags">
+          <span class="tag tt">BPA</span><span class="tag tt">ERP Integration</span><span class="tag tt">Workflow</span>
+        </div>
+      </div>
+
+      <div class="agent-card reveal d2">
+        <span class="agent-icon">🔒</span>
+        <h4>Cybersecurity SOC Agents</h4>
+        <p>Autonomous agents that triage security alerts, correlate threat signals, execute response playbooks, and escalate incidents — replacing manual SOC tasks with AI that never sleeps.</p>
+        <div class="agent-tags">
+          <span class="tag tc">SOC</span><span class="tag tc">SIEM</span><span class="tag tc">Incident Response</span>
+        </div>
+      </div>
+
+      <div class="agent-card reveal">
+        <span class="agent-icon">💬</span>
+        <h4>Customer Experience Agents</h4>
+        <p>Conversational AI agents trained on your business knowledge base — answering questions, resolving complaints, booking appointments, and escalating to humans when needed.</p>
+        <div class="agent-tags">
+          <span class="tag tt">CX</span><span class="tag tt">Chatbot</span><span class="tag tt">NLP</span>
+        </div>
+      </div>
+
+      <div class="agent-card reveal d1">
+        <span class="agent-icon">📊</span>
+        <h4>Data & Analytics Agents</h4>
+        <p>Agents that connect to your data sources, generate automated reports, surface anomalies, and deliver plain-language business insights to decision makers — on schedule or on demand.</p>
+        <div class="agent-tags">
+          <span class="tag tt">BI</span><span class="tag tt">Reporting</span><span class="tag tt">Data Ops</span>
+        </div>
+      </div>
+
+      <div class="agent-card reveal d2">
+        <span class="agent-icon">🏥</span>
+        <h4>Industry-Specific Agents</h4>
+        <p>Custom-built agents for healthcare (patient triage, appointment scheduling), legal (document review, contract analysis), finance (fraud detection, loan processing), and more.</p>
+        <div class="agent-tags">
+          <span class="tag tt">Healthcare</span><span class="tag tt">Legal</span><span class="tag tt">Finance</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TECHNOLOGIES -->
+    <div class="tech-section reveal">
+      <p class="eyebrow ey-grad" style="margin-bottom:1rem">Technologies We Build With</p>
+
+      <h3>AI Models & Frontier LLMs</h3>
+      <div class="tech-row" style="margin-bottom:1.5rem">
+        <span class="tech-pill grad-pill">Claude (Anthropic)</span>
+        <span class="tech-pill grad-pill">Claude Code</span>
+        <span class="tech-pill grad-pill">OpenAI GPT-4o</span>
+        <span class="tech-pill grad-pill">Grok (xAI)</span>
+        <span class="tech-pill grad-pill">Gemini</span>
+        <span class="tech-pill grad-pill">Llama 3</span>
+        <span class="tech-pill grad-pill">Mistral</span>
+      </div>
+
+      <h3>Automation & Workflow Platforms</h3>
+      <div class="tech-row" style="margin-bottom:1.5rem">
+        <span class="tech-pill">N8N</span>
+        <span class="tech-pill">Zapier</span>
+        <span class="tech-pill">Make (Integromat)</span>
+        <span class="tech-pill">Microsoft Power Automate</span>
+        <span class="tech-pill">Logic Apps</span>
+        <span class="tech-pill">ServiceNow</span>
+        <span class="tech-pill">Cribl</span>
+        <span class="tech-pill">Activepieces</span>
+      </div>
+
+      <h3>Development & Infrastructure</h3>
+      <div class="tech-row" style="margin-bottom:1.5rem">
+        <span class="tech-pill">Next.js</span>
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">Supabase</span>
+        <span class="tech-pill">AWS</span>
+        <span class="tech-pill">Azure</span>
+        <span class="tech-pill">GCP</span>
+        <span class="tech-pill">Docker</span>
+        <span class="tech-pill">Vercel</span>
+      </div>
+
+      <h3>Security & SOC Platforms</h3>
+      <div class="tech-row">
+        <span class="tech-pill">Microsoft Sentinel</span>
+        <span class="tech-pill">Splunk</span>
+        <span class="tech-pill">CrowdStrike</span>
+        <span class="tech-pill">SOAR</span>
+        <span class="tech-pill">EDR/XDR</span>
+        <span class="tech-pill">KQL</span>
+        <span class="tech-pill">Defender ATP</span>
+      </div>
+    </div>
+
+    <!-- OFFICES -->
+    <p class="eyebrow ey-grad reveal" style="margin-bottom:1.25rem">Global Operations</p>
+    <div class="offices-row">
+
+      <div class="office-card reveal">
+        <span class="office-flag">🇦🇺</span>
+        <h4>Sydney, Australia</h4>
+        <div class="o-role">Headquarters</div>
+        <p>Our founding base and primary delivery hub, serving enterprise clients across Australia and the Asia-Pacific region.</p>
+        <p style="margin-top:0.75rem"><a href="mailto:info@xfiniti.com.au">info@xfiniti.com.au</a></p>
+        <p><a href="tel:+61427172689">+61 427 172 689</a></p>
+      </div>
+
+      <div class="office-card reveal d1">
+        <span class="office-flag">🇮🇳</span>
+        <h4>India</h4>
+        <div class="o-role">Engineering & Delivery</div>
+        <p>Our India team provides around-the-clock engineering support, AI model training, agent development, and 24×7 SOC operations coverage.</p>
+        <p style="margin-top:0.75rem"><a href="tel:+917977362960">+91 797 736 2960</a></p>
+        <p><a href="mailto:info@xfiniti.com.au">info@xfiniti.com.au</a></p>
+      </div>
+
+      <div class="office-card reveal d2">
+        <span class="office-flag">🇺🇸</span>
+        <h4>San Francisco, USA</h4>
+        <div class="o-role">Business Development</div>
+        <p>Our US presence focuses on partnerships, enterprise sales, and keeping us connected to the frontier AI ecosystem and Silicon Valley innovation.</p>
+        <p style="margin-top:0.75rem"><a href="mailto:info@xfiniti.com.au">info@xfiniti.com.au</a></p>
+      </div>
+
+    </div>
+
+    <!-- FOUNDER -->
+    <p class="eyebrow ey-grad reveal" style="margin-bottom:1.25rem">Leadership</p>
+    <div class="founder-strip reveal">
+      <div>
+        <div class="f-portrait-sm">MS</div>
+        <p class="f-name-sm">Mayur Shah</p>
+        <p class="f-role-sm">Director</p>
+        <p class="f-company-sm">Xfiniti Technologies Pty Ltd</p>
+      </div>
+      <div class="founder-bio-text">
+        <blockquote>"AI Agents aren't the future — they're available right now. We help businesses deploy them today."</blockquote>
+        <p>Mayur Shah is the Director of Xfiniti Technologies, leading the company's global AI Agent development practice, enterprise cybersecurity division, and consumer software portfolio. Under his leadership, Xfiniti has built and deployed AI Agents across retail, financial services, healthcare, and government sectors — combining frontier model expertise with real-world engineering discipline.</p>
+        <p>With <strong>20+ years</strong> across IT Security Operations, DevSecOps, Cloud Computing, AI/ML, and product development, Mayur has delivered outcomes for some of Australia's most complex organisations including <strong>NAB, ANZ, IAG, BUPA, and AusNet</strong>. He leads an international team spanning Sydney, India, and San Francisco — delivering AI solutions that are production-ready, not just proof-of-concept.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -836,12 +1025,16 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
           <a href="mailto:info@xfiniti.com.au" class="ci-val">info@xfiniti.com.au</a>
         </div>
         <div class="ci-block">
-          <p class="ci-label">Phone</p>
+          <p class="ci-label">Australia</p>
           <a href="tel:+61427172689" class="ci-val">+61 427 172 689</a>
         </div>
         <div class="ci-block">
+          <p class="ci-label">India</p>
+          <a href="tel:+917977362960" class="ci-val">+91 797 736 2960</a>
+        </div>
+        <div class="ci-block">
           <p class="ci-label">Location</p>
-          <p class="ci-val">Sydney, Australia<br><span style="color:var(--grey-2);font-size:0.84rem">Serving clients worldwide</span></p>
+          <p class="ci-val">Sydney · India · San Francisco<br><span style="color:var(--grey-2);font-size:0.84rem">Global operations, worldwide clients</span></p>
         </div>
         <div class="ci-block">
           <p class="ci-note">We typically respond within one business day.</p>
