@@ -3,507 +3,903 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Xfiniti Technologies — Agentic AI · Cybersecurity · AI-Powered Apps</title>
+<title>Xfiniti Technologies — AI Agents · Cybersecurity · Software</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
+/* ══════════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════════ */
 :root {
-  /* Exact Xfiniti brand */
-  --navy:        #0d1625;
-  --navy-2:      #0a1220;
-  --navy-3:      #111e33;
-  --navy-card:   #0f1a2e;
-  --line:        #1e2d45;
-  --line-soft:   #172038;
-
-  /* Gradient stops from actual logo */
-  --grad-blue:   #6478dc;
-  --grad-teal:   #28c3af;
-
-  /* Text */
-  --white:       #ffffff;
-  --off-white:   #e8eef8;
-  --grey-1:      #8b9ab5;
-  --grey-2:      #5a6a85;
-
-  /* Accent splits */
-  --teal:        #28c3af;
-  --teal-dim:    rgba(40,195,175,0.12);
-  --teal-line:   rgba(40,195,175,0.3);
-  --blue-acc:    #6478dc;
-  --blue-dim:    rgba(100,120,220,0.12);
-
-  /* Cybersecurity accent — amber */
-  --amber:       #d4793a;
-  --amber-dim:   rgba(212,121,58,0.1);
-  --amber-line:  rgba(212,121,58,0.3);
+  --void:       #060709;
+  --obsidian:   #0b0c10;
+  --surface:    #101217;
+  --surface-2:  #161820;
+  --border:     rgba(255,255,255,0.055);
+  --border-md:  rgba(255,255,255,0.10);
+  --border-hi:  rgba(255,255,255,0.16);
+  --cream:      #F0EAE0;
+  --cream-2:    #B8B0A4;
+  --muted:      #5C5852;
+  --gold:       #C8A96E;
+  --gold-2:     #DFC28C;
+  --gold-dim:   rgba(200,169,110,0.08);
+  --gold-line:  rgba(200,169,110,0.22);
+  --gold-glow:  rgba(200,169,110,0.15);
+  --purple:     #8B6FD4;
+  --purple-dim: rgba(139,111,212,0.08);
+  --teal:       #4ABFB0;
+  --teal-dim:   rgba(74,191,176,0.08);
+  --red:        #E05A52;
 }
 
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--navy);
-  color:var(--off-white);
-  overflow-x:hidden;
-  line-height:1.65;
-  font-weight:300;
-}
-h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:-0.02em}
-a{color:inherit;text-decoration:none}
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+@media(prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
 
-/* ── LOGO SVG inline ─────────────────────────────────────── */
-/* The X icon: rounded rect, blue→teal gradient, white X */
-
-/* ── NAV ─────────────────────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:70px;padding:0 2.5rem;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(13,22,37,0.95);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--void);
+  color: var(--cream);
+  overflow-x: hidden;
+  line-height: 1.6;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
 }
 
-.nav-logo{
-  display:flex;align-items:center;gap:12px;
-  font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;
-  color:var(--white);
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px;
 }
 
-.nav-logo .x-icon{
-  width:34px;height:34px;border-radius:9px;flex-shrink:0;
-  background:linear-gradient(135deg,var(--grad-blue),var(--grad-teal));
-  display:flex;align-items:center;justify-content:center;
+h1,h2,h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
 }
 
-.nav-logo .x-icon svg{width:18px;height:18px}
-
-.nav-logo .wordmark{display:flex;align-items:baseline;gap:0}
-.nav-logo .wX{color:var(--white)}
-.nav-logo .wRest{color:var(--teal)}
-.nav-logo .wTech{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.6rem;letter-spacing:0.14em;
-  text-transform:uppercase;color:var(--grey-1);
-  margin-left:8px;font-weight:400;
-  align-self:center;
+h4,h5 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
-nav ul{list-style:none;display:flex;align-items:center;gap:0.25rem}
-nav ul a{
-  padding:8px 14px;border-radius:4px;
-  font-size:0.82rem;color:var(--grey-1);font-weight:400;
-  transition:color 0.2s,background 0.2s;letter-spacing:0.01em;
-}
-nav ul a:hover{color:var(--white);background:var(--line)}
-.nav-cyber{color:var(--amber)!important}
-.nav-cyber:hover{background:var(--amber-dim)!important}
-.nav-testing{color:#a78bfa!important}
-.nav-testing:hover{background:rgba(167,139,250,0.08)!important}
-.nav-cta{
-  background:linear-gradient(135deg,var(--grad-blue),var(--grad-teal))!important;
-  color:var(--navy)!important;font-weight:600!important;margin-left:0.5rem;
-  font-family:'IBM Plex Mono',monospace!important;font-size:0.73rem!important;
-  letter-spacing:0.04em!important;text-transform:uppercase;
-}
-.nav-cta:hover{opacity:0.88!important;background:linear-gradient(135deg,var(--grad-blue),var(--grad-teal))!important}
+a { color: inherit; text-decoration: none; }
 
-/* ── HERO ────────────────────────────────────────────────── */
-#hero{padding-top:70px;background:var(--navy)}
-
-.hero-inner{
-  max-width:1160px;margin:0 auto;
-  padding:6rem 2.5rem 4.5rem;
-  display:grid;grid-template-columns:1.05fr 0.95fr;gap:4rem;align-items:center;
-  border-bottom:1px solid var(--line);
+/* ══════════════════════════════════════════
+   UTILITY
+══════════════════════════════════════════ */
+.label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
-.hero-tag{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--grey-2);margin-bottom:1.75rem;
-  display:flex;align-items:center;gap:10px;
-}
-.hero-tag::before{content:'';width:20px;height:1px;background:var(--teal)}
-.hero-tag span{color:var(--teal)}
-
-.hero-inner h1{
-  font-size:clamp(2.6rem,5vw,4.6rem);
-  line-height:1.06;margin-bottom:1.5rem;
-  color:var(--white);
-}
-.hero-inner h1 .grad{
-  background:linear-gradient(90deg,var(--grad-blue),var(--grad-teal));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
+.gold-text {
+  background: linear-gradient(90deg, var(--gold), var(--gold-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.hero-sub{
-  font-size:1.05rem;color:var(--grey-1);font-weight:300;
-  line-height:1.78;max-width:480px;margin-bottom:2.25rem;
+.rule { height: 1px; background: var(--border); }
+.rule-gold { height: 1px; background: var(--gold-line); }
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem;
+  background: rgba(6,7,9,0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
 }
 
-.hero-btns{display:flex;gap:0.85rem;flex-wrap:wrap}
-
-.btn{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:12px 22px;border-radius:5px;
-  font-size:0.87rem;font-weight:500;cursor:pointer;
-  border:none;font-family:'Inter',sans-serif;
-  transition:opacity 0.2s,transform 0.15s;
-}
-.btn:hover{opacity:0.88;transform:translateY(-1px)}
-.btn-grad{background:linear-gradient(135deg,var(--grad-blue),var(--grad-teal));color:var(--navy)}
-.btn-outline-cyber{background:transparent;color:var(--amber);border:1px solid var(--amber-line)}
-.btn-outline-cyber:hover{background:var(--amber-dim)}
-.btn-outline-teal{background:transparent;color:var(--teal);border:1px solid var(--teal-line)}
-.btn-outline-teal:hover{background:var(--teal-dim)}
-.btn-amber{background:var(--amber);color:var(--navy)}
-.btn-teal{background:var(--teal);color:var(--navy)}
-
-/* Division preview cards */
-.div-cards{display:flex;flex-direction:column;gap:1px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
-.div-card{
-  padding:1.8rem 1.75rem;
-  background:var(--navy-card);
-  transition:background 0.2s;
-  border-bottom:1px solid var(--line);
-}
-.div-card:last-child{border-bottom:none}
-.div-card:hover{background:var(--navy-3)}
-
-.div-pill{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
-  padding:3px 10px;border-radius:20px;
-  display:inline-block;margin-bottom:0.9rem;
-}
-.pill-cyber{color:var(--amber);background:var(--amber-dim);border:1px solid var(--amber-line)}
-.pill-apps{color:var(--teal);background:var(--teal-dim);border:1px solid var(--teal-line)}
-
-.div-card h3{font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.4rem}
-.div-card p{font-size:0.84rem;color:var(--grey-1);line-height:1.6;margin-bottom:0.75rem}
-.div-arrow-cyber{font-size:0.78rem;color:var(--amber)}
-.div-arrow-apps{font-size:0.78rem;color:var(--teal)}
-
-/* Stats */
-.stats-strip{
-  max-width:1160px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-bottom:1px solid var(--line);
-}
-.stat-cell{
-  padding:1.75rem 2.5rem;
-  border-right:1px solid var(--line);
-}
-.stat-cell:last-child{border-right:none}
-.sv{
-  font-family:'Syne',sans-serif;
-  font-size:2.1rem;font-weight:800;line-height:1;
-  margin-bottom:5px;
-}
-.sv.grad{
-  background:linear-gradient(135deg,var(--grad-blue),var(--grad-teal));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.sv.amber{color:var(--amber)}
-.su{font-family:'IBM Plex Mono',monospace;font-size:0.64rem;letter-spacing:0.07em;text-transform:uppercase;color:var(--grey-2)}
-
-/* ── SECTION WRAPPER ─────────────────────────────────────── */
-.sw{max-width:1160px;margin:0 auto;padding:6.5rem 2.5rem}
-
-.eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:0.68rem;
-  letter-spacing:0.12em;text-transform:uppercase;
-  margin-bottom:1.25rem;display:flex;align-items:center;gap:10px;
-}
-.eyebrow::before{content:'';width:18px;height:1px;background:currentColor}
-.ey-cyber{color:var(--amber)}
-.ey-teal{color:var(--teal)}
-.ey-grad{
-  background:linear-gradient(90deg,var(--grad-blue),var(--grad-teal));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+.nav-logo {
+  display: flex; align-items: center; gap: 11px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 500;
+  color: var(--cream); letter-spacing: 0.02em;
 }
 
-.title-lg{
-  font-size:clamp(2rem,4vw,3.3rem);
-  line-height:1.1;color:var(--white);
-  max-width:680px;margin-bottom:1.25rem;
+.nav-x {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, #6B7FDC, #4ABFB0);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-.lede{
-  font-size:1rem;font-weight:300;line-height:1.8;
-  max-width:560px;margin-bottom:2.75rem;
-}
-.lede-dark{color:var(--grey-1)}
-.lede-paper{color:#4e4c47}
+.nav-x svg { width: 16px; height: 16px; }
 
-/* ── DIVISION BANNERS ──────────────────────────────────────── */
-.div-banner{
-  max-width:1160px;margin:0 auto;
-  padding:1.5rem 2.5rem;display:flex;align-items:center;gap:1.5rem;
-}
-.dbl{flex:1;height:1px}
-.dbl-cyber{background:var(--amber-line)}
-.dbl-apps{background:var(--teal-line)}
-.dbt{
-  font-family:'IBM Plex Mono',monospace;font-size:0.67rem;
-  letter-spacing:0.12em;text-transform:uppercase;
-  padding:5px 14px;border-radius:3px;white-space:nowrap;
-}
-.dbt-cyber{color:var(--amber);border:1px solid var(--amber-line);background:var(--amber-dim)}
-.dbt-apps{color:var(--teal);border:1px solid var(--teal-line);background:var(--teal-dim)}
-
-/* ── CYBER SECTION ─────────────────────────────────────────── */
-.cyber-bg{background:#0a0f1a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-
-.svc-table{}
-.svc-row{
-  display:grid;grid-template-columns:72px 220px 1fr;
-  gap:1.75rem;padding:1.75rem 0;
-  border-bottom:1px solid var(--line-soft);
-  align-items:start;
-}
-.svc-row:first-of-type{border-top:1px solid var(--line-soft)}
-.si{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:var(--amber);padding-top:2px}
-.svc-row h3{font-size:1.05rem;font-weight:700;color:var(--white);line-height:1.3}
-.svc-row p{font-size:0.87rem;color:var(--grey-1);line-height:1.72;font-weight:300;margin-bottom:0.65rem}
-.tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{
-  font-family:'IBM Plex Mono',monospace;font-size:0.63rem;
-  padding:3px 8px;border-radius:3px;letter-spacing:0.02em;
-}
-.tc{color:var(--amber);background:var(--amber-dim);border:1px solid var(--amber-line)}
-.tt{color:var(--teal);background:var(--teal-dim);border:1px solid var(--teal-line)}
-.tb{
-  color:var(--grad-blue);
-  background:var(--blue-dim);
-  border:1px solid rgba(100,120,220,0.25);
+.nav-wordmark { display: flex; align-items: baseline; gap: 1px; }
+.nav-x-letter { color: var(--cream); }
+.nav-rest { color: var(--gold); }
+.nav-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.58rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted);
+  margin-left: 6px; font-weight: 400;
 }
 
-/* ── APPS SECTION ─────────────────────────────────────────── */
-.apps-bg{background:var(--navy-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+nav ul { list-style: none; display: flex; align-items: center; gap: 0.15rem; }
+nav ul a {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem; font-weight: 400; letter-spacing: 0.02em;
+  color: var(--muted);
+  padding: 7px 13px; border-radius: 5px;
+  transition: color 0.2s, background 0.2s;
+}
+nav ul a:hover { color: var(--cream); background: rgba(255,255,255,0.05); }
 
-.apps-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:8px;overflow:hidden;
+.nav-cta {
+  color: var(--void) !important;
+  background: linear-gradient(135deg, var(--gold), var(--gold-2)) !important;
+  font-weight: 500 !important;
+  margin-left: 0.75rem;
+  letter-spacing: 0.04em !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
 }
-.app-card{
-  background:var(--navy-card);
-  padding:2rem 1.85rem;display:flex;flex-direction:column;
-  transition:background 0.2s;
-}
-.app-card:hover{background:var(--navy-3)}
+.nav-cta:hover { opacity: 0.88 !important; }
 
-.app-num{
-  font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;
-  color:var(--line);line-height:1;margin-bottom:1rem;
-}
-.app-icon-wrap{
-  width:50px;height:50px;border-radius:12px;
-  background:linear-gradient(135deg,var(--grad-blue),var(--grad-teal));
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;
-  color:var(--navy);margin-bottom:1.1rem;
-}
-.app-card h3{font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:3px}
-.app-type{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
-  letter-spacing:0.06em;text-transform:uppercase;
-  color:var(--teal);margin-bottom:0.9rem;
-}
-.app-card p{font-size:0.85rem;color:var(--grey-1);line-height:1.72;font-weight:300;margin-bottom:1rem;flex:1}
-.app-feats{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:1.25rem}
-.app-feats li{
-  font-size:0.8rem;color:var(--grey-1);
-  padding-left:1rem;position:relative;line-height:1.5;
-}
-.app-feats li::before{
-  content:'';position:absolute;left:0;top:9px;
-  width:5px;height:1px;background:var(--teal);
-}
-.app-link{
-  font-family:'IBM Plex Mono',monospace;font-size:0.73rem;
-  color:var(--teal);display:inline-flex;align-items:center;gap:5px;
-  border-bottom:1px solid var(--teal-line);padding-bottom:2px;
-  transition:opacity 0.2s;width:fit-content;
-}
-.app-link:hover{opacity:0.65}
+.nav-gold { color: var(--gold) !important; }
+.nav-gold:hover { background: var(--gold-dim) !important; }
+.nav-purple { color: var(--purple) !important; }
+.nav-purple:hover { background: var(--purple-dim) !important; }
 
-/* ── ABOUT ─────────────────────────────────────────────────── */
-.about-bg{
-  background:var(--navy);
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 3rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.founder-grid{display:grid;grid-template-columns:200px 1fr;gap:3.5rem;margin-top:2.5rem;align-items:start}
-
-.f-portrait{
-  width:130px;height:130px;border-radius:50%;
-  background:linear-gradient(135deg,var(--navy-3),var(--navy-2));
-  border:2px solid var(--line);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
-  color:var(--teal);margin-bottom:1.1rem;
+/* Ambient glow */
+.hero-glow {
+  position: absolute;
+  width: 900px; height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 65%);
+  top: -200px; right: -200px;
+  pointer-events: none;
 }
-.f-name{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:3px}
-.f-role{
-  font-family:'IBM Plex Mono',monospace;font-size:0.67rem;
-  letter-spacing:0.05em;text-transform:uppercase;color:var(--teal);margin-bottom:2px;
-}
-.f-company{font-size:0.8rem;color:var(--grey-2);margin-bottom:1rem}
-.f-chips{display:flex;flex-direction:column;gap:5px}
-.chip{
-  font-family:'IBM Plex Mono',monospace;font-size:0.63rem;
-  color:var(--grey-2);border:1px solid var(--line);
-  padding:3px 9px;border-radius:3px;width:fit-content;
+.hero-glow-2 {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,191,176,0.04) 0%, transparent 65%);
+  bottom: 100px; left: -100px;
+  pointer-events: none;
 }
 
-.f-body blockquote{
-  font-family:'Syne',sans-serif;font-style:normal;font-weight:600;
-  font-size:1.3rem;line-height:1.5;color:var(--white);
-  border-left:3px solid var(--teal);padding-left:1.25rem;
-  margin-bottom:1.5rem;max-width:580px;
+.hero-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 140px 0 0;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4rem;
 }
-.f-body p{
-  font-size:0.91rem;color:var(--grey-1);line-height:1.82;
-  font-weight:300;margin-bottom:1rem;max-width:600px;
-}
-.f-body strong{color:var(--white);font-weight:600}
 
-/* Pillars row */
-.pillars{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:var(--line);border:1px solid var(--line);
-  border-radius:6px;overflow:hidden;margin-top:2rem;
+.hero-tag-col {
+  display: flex; flex-direction: column; gap: 1rem;
 }
-.pillar{background:var(--navy-card);padding:1.5rem 1.4rem}
-.pillar-icon{
-  width:38px;height:38px;border-radius:9px;
-  background:linear-gradient(135deg,var(--grad-blue),var(--grad-teal));
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:0.85rem;font-size:1rem;
-}
-.pillar h4{font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:0.4rem}
-.pillar p{font-size:0.8rem;color:var(--grey-1);line-height:1.62;font-weight:300}
 
-/* ── PROCESS ─────────────────────────────────────────────── */
-.process-bg{background:#0a0f1a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--gold-line);
+  background: var(--gold-dim);
+  padding: 6px 14px; border-radius: 100px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold);
+  width: fit-content;
+}
+.hero-badge::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold);
+  animation: pulse-gold 2.5s infinite;
+}
+@keyframes pulse-gold {
+  0%,100%{ opacity:1; transform:scale(1) }
+  50%{ opacity:0.3; transform:scale(0.6) }
+}
 
-.process-row{
-  display:grid;grid-template-columns:70px 1fr;gap:2rem;
-  padding:1.75rem 0;border-bottom:1px solid var(--line-soft);
-  max-width:680px;
+.hero-location {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem; color: var(--muted);
+  letter-spacing: 0.06em;
 }
-.process-row:first-of-type{border-top:1px solid var(--line-soft)}
-.pn{
-  font-family:'IBM Plex Mono',monospace;font-size:0.78rem;
-  background:linear-gradient(135deg,var(--grad-blue),var(--grad-teal));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  padding-top:3px;
-}
-.process-row h4{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:0.4rem}
-.process-row p{font-size:0.87rem;color:var(--grey-1);line-height:1.7;font-weight:300}
 
-/* ── CONTACT ─────────────────────────────────────────────── */
-.contact-bg{background:var(--navy-2);border-top:1px solid var(--line)}
+.hero-h1 {
+  font-size: clamp(3.8rem, 8vw, 7.5rem);
+  font-weight: 300;
+  color: var(--cream);
+  max-width: 820px;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
 
-.contact-layout{display:grid;grid-template-columns:260px 1fr;gap:4rem;margin-top:2.5rem;align-items:start}
-.ci-block{padding-bottom:1.3rem;margin-bottom:1.3rem;border-bottom:1px solid var(--line-soft)}
-.ci-block:last-child{border:none;padding:0;margin:0}
-.ci-label{
-  font-family:'IBM Plex Mono',monospace;font-size:0.64rem;
-  letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;
+.hero-h1 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
 }
-.ci-val{font-size:0.9rem;color:var(--off-white);line-height:1.55}
-a.ci-val:hover{color:var(--teal)}
-.ci-note{font-size:0.82rem;color:var(--grey-2);font-style:italic;line-height:1.6}
 
-/* form */
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
-.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:1.25rem}
-.fl{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
-  letter-spacing:0.04em;text-transform:uppercase;color:var(--grey-2);
+.hero-right {
+  max-width: 320px;
+  display: flex; flex-direction: column; gap: 1.5rem;
+  align-self: flex-end;
+  padding-bottom: 0.5rem;
 }
-.fr-req{color:var(--teal)}
-.fi{
-  background:var(--line-soft);border:1px solid var(--line);
-  border-radius:5px;padding:10px 13px;
-  color:var(--off-white);font-family:'Inter',sans-serif;
-  font-size:0.9rem;font-weight:300;outline:none;
-  transition:border-color 0.2s;width:100%;
-}
-.fi::placeholder{color:var(--grey-2)}
-.fi:focus{border-color:var(--teal)}
-.f-sel{
-  appearance:none;cursor:pointer;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%235a6a85' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 12px center;
-}
-.f-sel option{background:var(--navy-card);color:var(--off-white)}
-.f-ta{resize:vertical;min-height:115px;line-height:1.65}
-.form-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:0.5rem}
-.form-priv{font-size:0.74rem;color:var(--grey-2);max-width:260px;line-height:1.5}
-.form-err{font-size:0.77rem;color:var(--amber);margin-top:0.4rem}
-.form-ok{padding:2.5rem 0}
-.form-ok h3{font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
-.form-ok p{font-size:0.88rem;color:var(--grey-1);line-height:1.7}
 
-/* ── FOOTER ──────────────────────────────────────────────── */
-footer{background:var(--navy-2);border-top:1px solid var(--line)}
-.fi-wrap{max-width:1160px;margin:0 auto;padding:4rem 2.5rem 2.5rem}
-.ft-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem}
-.fb p{font-size:0.83rem;color:var(--grey-1);max-width:230px;margin-top:0.85rem;line-height:1.7;font-weight:300}
-.fc h5{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
-  letter-spacing:0.07em;text-transform:uppercase;
-  margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--line);
+.hero-desc {
+  font-size: 0.95rem; color: var(--cream-2);
+  line-height: 1.78; font-weight: 300;
 }
-.fc h5.hc{color:var(--amber);border-color:var(--amber-line)}
-.fc h5.ht{color:var(--teal);border-color:var(--teal-line)}
-.fc h5.hw{color:var(--grey-1)}
-.fc ul{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
-.fc ul a{font-size:0.84rem;color:var(--grey-1);font-weight:300;transition:color 0.2s}
-.fc ul a:hover{color:var(--white)}
-.ft-bot{
-  display:flex;justify-content:space-between;align-items:center;
-  padding-top:1.75rem;border-top:1px solid var(--line);
-  flex-wrap:wrap;gap:1rem;
-}
-.ft-bot p{font-family:'IBM Plex Mono',monospace;font-size:0.67rem;color:var(--grey-2);letter-spacing:0.02em}
-.ft-bot p a{color:var(--teal)}
 
-/* ── REVEAL ──────────────────────────────────────────────── */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.55s ease,transform 0.55s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.d1{transition-delay:0.05s}.d2{transition-delay:0.12s}.d3{transition-delay:0.19s}
+.hero-actions { display: flex; flex-direction: column; gap: 0.75rem; }
 
-/* ── RESPONSIVE ──────────────────────────────────────────── */
-@media(max-width:980px){
-  .hero-inner{grid-template-columns:1fr}
-  .div-cards{display:none}
-  .stats-strip{grid-template-columns:repeat(2,1fr)}
-  .svc-row{grid-template-columns:1fr}
-  .si{display:none}
-  .apps-grid{grid-template-columns:1fr}
-  .founder-grid{grid-template-columns:1fr;gap:2rem}
-  .pillars{grid-template-columns:1fr}
-  .contact-layout{grid-template-columns:1fr}
-  .ft-top{grid-template-columns:1fr 1fr;gap:2rem}
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-2));
+  color: var(--void); padding: 13px 24px; border-radius: 4px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  border: none; cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
 }
-@media(max-width:640px){
-  nav ul{display:none}
-  .sw{padding:4.5rem 1.5rem}
-  .stats-strip{grid-template-columns:1fr 1fr}
-  .stat-cell{padding:1.4rem}
-  .process-row{grid-template-columns:1fr}
-  .pn{display:none}
-  .form-row{grid-template-columns:1fr}
-  .ft-top{grid-template-columns:1fr}
-  .form-foot{flex-direction:column;align-items:stretch}
+.btn-gold:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  color: var(--cream-2); padding: 12px 24px; border-radius: 4px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem; font-weight: 400;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border-md);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--border-hi); color: var(--cream); }
+
+/* Division strip */
+.hero-divisions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border);
+}
+
+.div-strip-item {
+  padding: 2.25rem 0;
+  border-right: 1px solid var(--border);
+  padding-right: 2rem;
+  padding-left: 0;
+  display: flex; align-items: flex-start; gap: 1.25rem;
+  cursor: default;
+  transition: background 0.2s;
+  position: relative;
+}
+.div-strip-item:not(:first-child) { padding-left: 2rem; }
+.div-strip-item:last-child { border-right: none; }
+
+.div-strip-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem; font-weight: 300;
+  line-height: 1; color: var(--border-hi);
+  flex-shrink: 0; margin-top: -2px;
+  transition: color 0.3s;
+}
+.div-strip-item:hover .div-strip-num { color: var(--border-md); }
+
+.div-strip-body {}
+.div-strip-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+.dl-gold { color: var(--gold); }
+.dl-teal { color: var(--teal); }
+.dl-purple { color: var(--purple); }
+
+.div-strip-body h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem; font-weight: 500;
+  color: var(--cream); margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.div-strip-body p {
+  font-size: 0.8rem; color: var(--muted);
+  line-height: 1.6; font-weight: 300;
+}
+
+/* ══════════════════════════════════════════
+   SECTION WRAPPER
+══════════════════════════════════════════ */
+.sw { max-width: 1200px; margin: 0 auto; padding: 7rem 3rem; }
+.sw-sm { max-width: 1200px; margin: 0 auto; padding: 5rem 3rem; }
+
+.section-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3rem; margin-bottom: 4.5rem;
+  align-items: end;
+}
+
+.section-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem; letter-spacing: 0.14em;
+  text-transform: uppercase; font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 1.25rem;
+}
+.section-label::before { content:''; width:20px; height:1px; background:currentColor; }
+.sl-gold { color: var(--gold); }
+.sl-teal { color: var(--teal); }
+.sl-purple { color: var(--purple); }
+
+.section-h2 {
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  color: var(--cream); font-weight: 300;
+  max-width: 560px;
+}
+
+.section-h2 em { font-style: italic; color: var(--gold); }
+
+.section-lede {
+  font-size: 0.95rem; color: var(--cream-2);
+  line-height: 1.82; font-weight: 300;
+  max-width: 420px;
+  align-self: end;
+}
+
+/* ══════════════════════════════════════════
+   DIVISION BANNERS
+══════════════════════════════════════════ */
+.div-band {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.div-band-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 1.1rem 3rem;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.div-band-line { flex: 1; height: 1px; }
+.dlg { background: var(--gold-line); }
+.dlt { background: rgba(74,191,176,0.2); }
+.dlp { background: rgba(139,111,212,0.2); }
+.div-band-pill {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 500;
+  padding: 5px 14px; border-radius: 100px;
+  white-space: nowrap;
+}
+.dpg { color: var(--gold); border: 1px solid var(--gold-line); background: var(--gold-dim); }
+.dpt { color: var(--teal); border: 1px solid rgba(74,191,176,0.2); background: var(--teal-dim); }
+.dpp { color: var(--purple); border: 1px solid rgba(139,111,212,0.2); background: var(--purple-dim); }
+
+/* ══════════════════════════════════════════
+   CYBER — SERVICE TABLE
+══════════════════════════════════════════ */
+.cyber-bg { background: var(--obsidian); }
+
+.svc-item {
+  display: grid; grid-template-columns: 56px 1fr 2fr;
+  gap: 2rem; padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.svc-item:first-of-type { border-top: 1px solid var(--border); }
+.svc-item:hover { }
+
+.svc-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 300;
+  color: var(--border-hi); line-height: 1.2;
+  padding-top: 2px;
+}
+
+.svc-item h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem; font-weight: 500;
+  color: var(--cream); letter-spacing: -0.01em;
+}
+
+.svc-item p {
+  font-size: 0.87rem; color: var(--cream-2);
+  line-height: 1.75; font-weight: 300; margin-bottom: 0.8rem;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.04em;
+  padding: 3px 9px; border-radius: 3px;
+  font-weight: 400;
+}
+.chip-g { color: var(--gold); background: var(--gold-dim); border: 1px solid var(--gold-line); }
+.chip-t { color: var(--teal); background: var(--teal-dim); border: 1px solid rgba(74,191,176,0.2); }
+.chip-p { color: var(--purple); background: var(--purple-dim); border: 1px solid rgba(139,111,212,0.2); }
+.chip-n { color: var(--cream-2); background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+
+/* ══════════════════════════════════════════
+   APPS — 3 COLUMN CARDS
+══════════════════════════════════════════ */
+.apps-bg { background: var(--void); }
+
+.app-trio {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border: 1px solid var(--border);
+  border-radius: 2px; overflow: hidden;
+}
+
+.app-card {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  transition: background 0.25s;
+  position: relative; overflow: hidden;
+}
+.app-card:last-child { border-right: none; }
+.app-card:hover { background: var(--surface); }
+
+.app-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.app-card:hover::before { opacity: 1; }
+
+.app-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; font-weight: 300;
+  color: var(--border); line-height: 1;
+  margin-bottom: 1.5rem;
+  transition: color 0.25s;
+}
+.app-card:hover .app-n { color: var(--border-md); }
+
+.app-icon {
+  width: 46px; height: 46px; border-radius: 10px;
+  background: linear-gradient(135deg, rgba(107,127,220,0.15), rgba(74,191,176,0.15));
+  border: 1px solid var(--border-md);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem; font-weight: 600; color: var(--teal);
+  margin-bottom: 1.25rem;
+}
+
+.app-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem; font-weight: 500;
+  color: var(--cream); margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.app-type {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 1rem; font-weight: 400;
+}
+
+.app-card p {
+  font-size: 0.85rem; color: var(--cream-2);
+  line-height: 1.75; font-weight: 300;
+  margin-bottom: 1.25rem; flex: 1;
+}
+
+.app-feats { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-bottom: 1.5rem; }
+.app-feats li {
+  font-size: 0.79rem; color: var(--muted);
+  padding-left: 1rem; position: relative; line-height: 1.45;
+}
+.app-feats li::before {
+  content: ''; position: absolute; left: 0; top: 8px;
+  width: 4px; height: 1px; background: var(--teal);
+}
+
+.app-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem; letter-spacing: 0.06em;
+  text-transform: uppercase; font-weight: 500;
+  color: var(--teal);
+  display: inline-flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid rgba(74,191,176,0.25);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+  width: fit-content;
+}
+.app-link:hover { opacity: 0.65; }
+
+/* ══════════════════════════════════════════
+   TESTING
+══════════════════════════════════════════ */
+.test-bg { background: var(--obsidian); }
+
+.test-grid-6 {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 2px;
+  overflow: hidden; margin-bottom: 3.5rem;
+}
+
+.test-card {
+  background: var(--obsidian);
+  padding: 2rem 1.85rem;
+  transition: background 0.2s;
+}
+.test-card:hover { background: var(--surface); }
+
+.test-icon { font-size: 1.4rem; margin-bottom: 1rem; display: block; }
+.test-card h4 {
+  font-size: 0.95rem; font-weight: 500; color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+.test-card p { font-size: 0.82rem; color: var(--cream-2); line-height: 1.68; font-weight: 300; margin-bottom: 0.85rem; }
+
+.test-svc-row {
+  display: grid; grid-template-columns: 56px 1fr 2fr;
+  gap: 2rem; padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.test-svc-row:first-of-type { border-top: 1px solid var(--border); }
+.tsr-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 300;
+  color: var(--border-hi); padding-top: 2px;
+}
+.test-svc-row h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem; font-weight: 500; color: var(--cream);
+}
+.test-svc-row p { font-size: 0.86rem; color: var(--cream-2); line-height: 1.75; font-weight: 300; margin-bottom: 0.7rem; }
+
+.pricing-banner {
+  margin-top: 3rem;
+  padding: 2.5rem 2.75rem;
+  background: linear-gradient(135deg, rgba(139,111,212,0.07), rgba(200,169,110,0.05));
+  border: 1px solid var(--border-md);
+  border-radius: 2px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+}
+.pricing-banner h4 { font-size: 1.1rem; font-weight: 500; color: var(--cream); margin-bottom: 0.4rem; }
+.pricing-banner p { font-size: 0.87rem; color: var(--cream-2); font-weight: 300; max-width: 540px; line-height: 1.7; }
+
+/* ══════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════ */
+.about-bg { background: var(--void); }
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: start;
+}
+
+.about-left {}
+.about-left p {
+  font-size: 0.92rem; color: var(--cream-2);
+  line-height: 1.85; font-weight: 300; margin-bottom: 1rem;
+  max-width: 500px;
+}
+.about-left strong { color: var(--cream); font-weight: 500; }
+
+.sectors-wrap { margin-top: 2.5rem; }
+.sectors-wrap .label { color: var(--muted); margin-bottom: 1.1rem; display: block; }
+.sectors { display: flex; flex-wrap: wrap; gap: 7px; }
+.sector {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem; padding: 6px 13px;
+  border: 1px solid var(--border-md); border-radius: 100px;
+  color: var(--cream-2); font-weight: 400;
+  transition: border-color 0.2s, color 0.2s;
+}
+.sector:hover { border-color: var(--gold-line); color: var(--gold); }
+
+.about-right {}
+
+.agent-list { display: flex; flex-direction: column; gap: 1px; margin-bottom: 2.5rem; }
+.agent-row {
+  display: flex; align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  gap: 1.25rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.agent-row:hover { border-color: var(--border-md); background: var(--surface-2); }
+.agent-row:first-child { border-radius: 2px 2px 0 0; }
+.agent-row:last-child { border-radius: 0 0 2px 2px; }
+.agent-emoji { font-size: 1.1rem; flex-shrink: 0; }
+.agent-row h4 { font-size: 0.88rem; font-weight: 500; color: var(--cream); margin-bottom: 2px; }
+.agent-row p { font-size: 0.78rem; color: var(--muted); line-height: 1.45; font-weight: 300; }
+.agent-arrow { margin-left: auto; color: var(--muted); font-size: 0.8rem; flex-shrink: 0; }
+
+/* Tech grid */
+.tech-block { margin-bottom: 2rem; }
+.tech-block-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.65rem; display: block;
+}
+.tech-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.tc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem; padding: 4px 10px;
+  border: 1px solid var(--border-md);
+  border-radius: 3px; color: var(--cream-2);
+  font-weight: 400;
+  transition: border-color 0.2s, color 0.2s;
+}
+.tc:hover { border-color: var(--gold-line); color: var(--gold); }
+.tc-gold { color: var(--gold); border-color: var(--gold-line); background: var(--gold-dim); }
+
+/* Offices */
+.offices-3 {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 2px;
+  overflow: hidden; margin-top: 4rem; margin-bottom: 3.5rem;
+}
+.office {
+  background: var(--void); padding: 2rem 1.75rem;
+  transition: background 0.2s;
+}
+.office:hover { background: var(--surface); }
+.office-flag { font-size: 1.4rem; margin-bottom: 0.75rem; display: block; }
+.office h4 { font-size: 0.92rem; font-weight: 500; color: var(--cream); margin-bottom: 2px; }
+.office-role {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.office p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+.office a { color: var(--teal); font-size: 0.8rem; display: block; margin-top: 0.6rem; }
+.office a:hover { opacity: 0.7; }
+
+/* Founder */
+.founder-card {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  padding: 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border-md);
+  border-radius: 2px;
+  position: relative; overflow: hidden;
+}
+.founder-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, var(--gold-line), transparent);
+}
+.founder-portrait {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border-md);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 300;
+  color: var(--gold); flex-shrink: 0;
+}
+.founder-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400;
+  color: var(--cream); margin-bottom: 2px; letter-spacing: 0.01em;
+}
+.founder-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 2px;
+}
+.founder-co { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.25rem; }
+.founder-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-style: italic; font-weight: 400;
+  color: var(--cream); border-left: 1px solid var(--gold-line);
+  padding-left: 1rem; margin-bottom: 1.1rem;
+  line-height: 1.55; max-width: 580px;
+}
+.founder-bio p { font-size: 0.85rem; color: var(--cream-2); line-height: 1.8; font-weight: 300; margin-bottom: 0.75rem; max-width: 600px; }
+.founder-bio strong { color: var(--cream); font-weight: 500; }
+
+/* ══════════════════════════════════════════
+   PROCESS
+══════════════════════════════════════════ */
+.process-bg { background: var(--obsidian); }
+
+.process-4 {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 2px;
+  overflow: hidden;
+}
+.p-cell {
+  background: var(--obsidian); padding: 2.25rem 1.85rem;
+  transition: background 0.2s;
+}
+.p-cell:hover { background: var(--surface); }
+.p-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 300;
+  color: var(--border-hi); line-height: 1; margin-bottom: 1rem;
+}
+.p-cell h4 { font-size: 0.9rem; font-weight: 500; color: var(--cream); margin-bottom: 0.5rem; }
+.p-cell p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+/* ══════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════ */
+.contact-bg { background: var(--void); }
+
+.contact-split {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 4.5rem; align-items: start;
+}
+
+.c-info-item { margin-bottom: 2rem; }
+.c-info-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 5px;
+}
+.c-info-val { font-size: 0.9rem; color: var(--cream); line-height: 1.55; }
+a.c-info-val:hover { color: var(--gold); }
+.c-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 0.9rem;
+  color: var(--muted); line-height: 1.6;
+}
+
+/* Form */
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.5rem; }
+.fl {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.fr-req { color: var(--gold); }
+.fi {
+  background: var(--surface);
+  border: 1px solid var(--border-md);
+  border-radius: 3px; padding: 11px 14px;
+  color: var(--cream); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 300; outline: none;
+  transition: border-color 0.2s, background 0.2s; width: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+.fi::placeholder { color: var(--muted); }
+.fi:focus { border-color: var(--gold-line); background: var(--surface-2); }
+.f-sel {
+  appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%235C5852' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 13px center;
+}
+.f-sel option { background: var(--surface); color: var(--cream); }
+.f-ta { resize: vertical; min-height: 120px; line-height: 1.65; }
+.form-foot {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem;
+  flex-wrap: wrap; margin-top: 0.5rem;
+}
+.form-priv { font-size: 0.74rem; color: var(--muted); max-width: 260px; line-height: 1.5; }
+.form-err { font-size: 0.75rem; color: var(--red); margin-top: 0.5rem; }
+.form-ok { padding: 2.5rem 0; }
+.form-ok h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--cream); margin-bottom: 0.5rem; }
+.form-ok p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  border-top: 1px solid var(--border);
+  background: var(--obsidian);
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 4rem 3rem 2.5rem; }
+.footer-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  gap: 2.5rem; margin-bottom: 3rem;
+}
+.fb .nav-logo { margin-bottom: 1rem; }
+.fb p { font-size: 0.82rem; color: var(--muted); max-width: 220px; line-height: 1.7; font-weight: 300; }
+.fc h5 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem; letter-spacing: 0.1em;
+  text-transform: uppercase; font-weight: 500;
+  margin-bottom: 1rem; padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--cream-2);
+}
+.fc h5.hg { color: var(--gold); border-color: var(--gold-line); }
+.fc h5.ht { color: var(--teal); border-color: rgba(74,191,176,0.15); }
+.fc h5.hp { color: var(--purple); border-color: rgba(139,111,212,0.15); }
+.fc ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.fc ul a { font-size: 0.82rem; color: var(--muted); font-weight: 300; transition: color 0.2s; }
+.fc ul a:hover { color: var(--cream); }
+.footer-bot {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 1.75rem; border-top: 1px solid var(--border);
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-bot p {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem; color: var(--muted); letter-spacing: 0.04em;
+}
+.footer-bot p a { color: var(--gold); }
+
+/* ══════════════════════════════════════════
+   REVEAL
+══════════════════════════════════════════ */
+.rev { opacity:0; transform:translateY(20px); transition:opacity 0.65s ease, transform 0.65s ease; }
+.rev.in { opacity:1; transform:translateY(0); }
+.d1 { transition-delay:0.08s } .d2 { transition-delay:0.16s } .d3 { transition-delay:0.24s }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media(max-width:1024px) {
+  .hero-top { grid-template-columns:1fr; gap:3rem }
+  .hero-right { max-width:100% }
+  .hero-divisions { grid-template-columns:1fr }
+  .section-header { grid-template-columns:1fr }
+  .app-trio { grid-template-columns:1fr }
+  .test-grid-6 { grid-template-columns:1fr 1fr }
+  .process-4 { grid-template-columns:1fr 1fr }
+  .about-grid { grid-template-columns:1fr }
+  .contact-split { grid-template-columns:1fr }
+  .footer-top { grid-template-columns:1fr 1fr }
+  .offices-3 { grid-template-columns:1fr }
+  .founder-card { grid-template-columns:1fr }
+}
+@media(max-width:768px) {
+  nav ul { display:none }
+  .sw { padding:5rem 1.5rem }
+  .sw-sm { padding:3.5rem 1.5rem }
+  #hero { padding:0 1.5rem 0 }
+  nav { padding:0 1.5rem }
+  .svc-item { grid-template-columns:1fr }
+  .svc-num { display:none }
+  .test-svc-row { grid-template-columns:1fr }
+  .tsr-num { display:none }
+  .test-grid-6 { grid-template-columns:1fr }
+  .process-4 { grid-template-columns:1fr }
+  .f-row { grid-template-columns:1fr }
+  .footer-top { grid-template-columns:1fr }
+  .hero-h1 { font-size:3.2rem }
+  .hero-divisions { display:none }
 }
 </style>
 </head>
@@ -512,21 +908,21 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <div class="x-icon">
-      <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="2" y1="2" x2="16" y2="16" stroke="white" stroke-width="3.2" stroke-linecap="round"/>
-        <line x1="16" y1="2" x2="2" y2="16" stroke="white" stroke-width="3.2" stroke-linecap="round"/>
+    <div class="nav-x">
+      <svg viewBox="0 0 16 16" fill="none">
+        <line x1="2" y1="2" x2="14" y2="14" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="14" y1="2" x2="2" y2="14" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
     </div>
-    <div class="wordmark">
-      <span class="wX">X</span><span class="wRest">finiti</span>
-      <span class="wTech">Technologies</span>
+    <div class="nav-wordmark">
+      <span class="nav-x-letter">X</span><span class="nav-rest">finiti</span>
+      <span class="nav-sub">Technologies</span>
     </div>
   </a>
   <ul>
-    <li><a href="#cybersecurity" class="nav-cyber">Cybersecurity</a></li>
-    <li><a href="#apps" class="nav-apps">AI Apps</a></li>
-    <li><a href="#testing" class="nav-testing">Testing</a></li>
+    <li><a href="#cybersecurity" class="nav-gold">Cybersecurity</a></li>
+    <li><a href="#apps">AI Apps</a></li>
+    <li><a href="#testing" class="nav-purple">Testing</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -535,148 +931,114 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
 
 <main>
 
-<!-- ══════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════ -->
+<!-- ══════ HERO ══════ -->
 <section id="hero">
-  <div class="hero-inner">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
+  <div class="hero-top">
     <div>
-      <p class="hero-tag">Sydney, Australia <span>·</span> Serving clients worldwide</p>
-      <h1>Agentic AI.<br><span class="grad">Cybersecurity.</span><br>Human-first Apps.</h1>
-      <p class="hero-sub">Autonomous AI-driven SOC, enterprise security, and AI adoption programs — alongside intelligent consumer software that improves everyday life. Two divisions, one engineering standard.</p>
-      <div class="hero-btns">
-        <a href="#cybersecurity" class="btn btn-grad">Cybersecurity →</a>
-        <a href="#apps" class="btn btn-outline-teal">AI Apps →</a>
-        <a href="#contact" class="btn btn-outline-cyber">Get in Touch →</a>
+      <div class="hero-tag-col">
+        <span class="hero-badge">Sydney · India · San Francisco</span>
+        <span class="hero-location">Xfiniti Technologies Pty Ltd — Global AI &amp; Cybersecurity</span>
       </div>
+      <div style="height:3rem"></div>
+      <h1 class="hero-h1">
+        We build AI<br>Agents that<br><em>work.</em>
+      </h1>
     </div>
-    <div class="div-cards">
-      <div class="div-card">
-        <span class="div-pill pill-cyber">Division 01</span>
-        <h3>Cybersecurity Services</h3>
-        <p>Agentic AI SOC · AI Adoption & Build · Automation Workflows · SIEM · SOAR · EDR/XDR · Cloud Security</p>
-        <span class="div-arrow-cyber">Explore Security →</span>
-      </div>
-      <div class="div-card">
-        <span class="div-pill pill-apps">Division 02</span>
-        <h3>Consumer AI Apps</h3>
-        <p>TinyLearner · CoParent Share · Journaling App — intelligent software for education, family, and wellbeing</p>
-        <span class="div-arrow-apps">Explore Apps →</span>
+    <div class="hero-right">
+      <p class="hero-desc">Intelligent agents for enterprise and SMB. Autonomous cybersecurity operations. AI-powered consumer software. Comprehensive quality assurance. One team, four disciplines, zero compromise.</p>
+      <div class="hero-actions">
+        <a href="#cybersecurity" class="btn-gold">Explore Our Work →</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
       </div>
     </div>
   </div>
 
-
+  <div class="hero-divisions">
+    <div class="div-strip-item">
+      <span class="div-strip-num">01</span>
+      <div class="div-strip-body">
+        <p class="div-strip-label dl-gold">Cybersecurity</p>
+        <h3>Agentic AI SOC & Enterprise Security</h3>
+        <p>Autonomous threat detection, incident response, and security operations — 24×7, powered by frontier AI.</p>
+      </div>
+    </div>
+    <div class="div-strip-item">
+      <span class="div-strip-num">02</span>
+      <div class="div-strip-body">
+        <p class="div-strip-label dl-teal">AI Apps & Agents</p>
+        <h3>Consumer Software & AI Agent Development</h3>
+        <p>TinyLearner, CoParent Share, Journaling App — and bespoke AI Agents for retail, operations, and beyond.</p>
+      </div>
+    </div>
+    <div class="div-strip-item">
+      <span class="div-strip-num">03</span>
+      <div class="div-strip-body">
+        <p class="div-strip-label dl-purple">QA & Testing</p>
+        <h3>AI, LLM, Software & Agent Testing</h3>
+        <p>Comprehensive quality assurance for AI systems, software, apps, and automation workflows — production-ready, every time.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-══════════════════════════════════════════════ -->
-<div class="div-banner">
-  <div class="dbl dbl-cyber"></div>
-  <span class="dbt dbt-cyber">Division 01 — Cybersecurity Services</span>
-  <div class="dbl dbl-cyber"></div>
+<!-- ══════ DIV 01 — CYBERSECURITY ══════ -->
+<div class="div-band">
+  <div class="div-band-inner">
+    <div class="div-band-line dlg"></div>
+    <span class="div-band-pill dpg">Division 01 — Cybersecurity Services</span>
+    <div class="div-band-line dlg"></div>
+  </div>
 </div>
 
 <div class="cyber-bg">
   <div class="sw" id="cybersecurity">
-    <p class="eyebrow ey-cyber reveal">Agentic AI · Enterprise Security · 24/7</p>
-    <h2 class="title-lg reveal">Detect. Contain.<br>Eliminate. Autonomously.</h2>
-    <p class="lede lede-dark reveal">We lead organisations through Agentic AI SOC transformation, AI adoption programs, and automation workflows — then layer perimeter security, AI detection, automated response, and threat intelligence on top. Each control built to catch what the last one missed. Serving banking, government, telecom, manufacturing, and professional services worldwide.</p>
-
-    <div class="svc-table">
-
-      <div class="svc-row reveal">
-        <span class="si">01/07</span>
-        <h3>Agentic AI SOC</h3>
-        <div>
-          <p>Autonomous AI agents triage alerts, orchestrate responses, and learn from every incident — delivering 24×7 SOC operations without the human bottleneck. Full agentic loop: detect → reason → respond → learn.</p>
-          <div class="tags"><span class="tag tb">Agentic AI</span><span class="tag tc">AI Agents</span><span class="tag tc">Auto-Response</span><span class="tag tc">SOC</span></div>
-        </div>
+    <div class="section-header rev">
+      <div>
+        <p class="section-label sl-gold">Enterprise Security · Agentic AI · 24/7</p>
+        <h2 class="section-h2">Detect. Contain.<br><em>Eliminate.</em></h2>
       </div>
-
-      <div class="svc-row reveal">
-        <span class="si">02/07</span>
-        <h3>AI Adoption & Build</h3>
-        <div>
-          <p>End-to-end AI adoption programs — from strategy and model selection through to production deployment. We integrate frontier models (Claude, GPT-4) into security pipelines, detection engineering, and operational workflows.</p>
-          <div class="tags"><span class="tag tb">Claude</span><span class="tag tb">GPT-4</span><span class="tag tc">AI Strategy</span><span class="tag tc">Frontier LLMs</span></div>
-        </div>
-      </div>
-
-      <div class="svc-row reveal">
-        <span class="si">03/07</span>
-        <h3>Automation Workflow</h3>
-        <div>
-          <p>End-to-end automation of alert triage, ticket creation, and remediation workflows across SOAR, Logic Apps, ServiceNow, and Cribl — eliminating manual overhead at scale.</p>
-          <div class="tags"><span class="tag tc">SOAR</span><span class="tag tc">Logic Apps</span><span class="tag tc">ServiceNow</span><span class="tag tc">Cribl</span></div>
-        </div>
-      </div>
-
-      <div class="svc-row reveal">
-        <span class="si">04/07</span>
-        <h3>AI-Driven Threat Detection</h3>
-        <div>
-          <p>ML models trained on real attack patterns monitor your environment continuously, correlating signals and flagging anomalies before they escalate — across Sentinel, Splunk, and CrowdStrike NG-SIEM.</p>
-          <div class="tags"><span class="tag tc">SIEM</span><span class="tag tc">KQL</span><span class="tag tc">Sentinel</span><span class="tag tc">Splunk</span><span class="tag tc">EDR/XDR</span></div>
-        </div>
-      </div>
-
-      <div class="svc-row reveal">
-        <span class="si">05/07</span>
-        <h3>Managed SOC & Incident Response</h3>
-        <div>
-          <p>24×7 security operations with automated playbooks for phishing, ransomware, and insider threats — integrated with your ITSM stack and escalation policies.</p>
-          <div class="tags"><span class="tag tc">24/7 SOC</span><span class="tag tc">Playbooks</span><span class="tag tc">IR</span><span class="tag tc">SOAR</span></div>
-        </div>
-      </div>
-
-      <div class="svc-row reveal">
-        <span class="si">06/07</span>
-        <h3>Cloud Security Posture</h3>
-        <div>
-          <p>Continuous visibility into misconfigurations and compliance gaps across AWS, Azure, and GCP — with automated remediation guidance before they're exploited.</p>
-          <div class="tags"><span class="tag tc">CSPM</span><span class="tag tc">AWS</span><span class="tag tc">Azure</span><span class="tag tc">GCP</span></div>
-        </div>
-      </div>
-
-      <div class="svc-row reveal">
-        <span class="si">07/07</span>
-        <h3>Predictive Threat Intelligence</h3>
-        <div>
-          <p>AI models trained on global threat feeds, dark web signals, and adversary behaviour anticipate attacks before they reach your perimeter and enrich every alert with real context.</p>
-          <div class="tags"><span class="tag tc">Threat Intel</span><span class="tag tc">Dark Web</span><span class="tag tc">IOC Enrichment</span></div>
-        </div>
-      </div>
-
+      <p class="section-lede">We lead organisations through Agentic AI SOC transformation, AI adoption programs, and automation workflows — then layer perimeter security, detection, and intelligence on top. Each control built to catch what the last one missed.</p>
     </div>
-    <div style="margin-top:2.25rem">
-      <a href="#contact" class="btn btn-amber">Enquire About Security Services →</a>
-    </div>
+
+    <div class="svc-item rev"><span class="svc-num">01</span><h3>Agentic AI SOC</h3><div><p>Autonomous AI agents triage alerts, orchestrate responses, and learn from every incident — delivering true 24×7 SOC operations without the human bottleneck. Full loop: detect → reason → respond → learn.</p><div class="chips"><span class="chip chip-g">Agentic AI</span><span class="chip chip-g">Auto-Response</span><span class="chip chip-n">SOC</span></div></div></div>
+    <div class="svc-item rev"><span class="svc-num">02</span><h3>AI Adoption & Build</h3><div><p>End-to-end AI adoption from strategy through to production deployment — integrating frontier models including Claude, GPT-4o, and Grok into security pipelines and operational workflows.</p><div class="chips"><span class="chip chip-g">Claude</span><span class="chip chip-g">GPT-4o</span><span class="chip chip-g">Grok</span><span class="chip chip-n">Frontier LLMs</span></div></div></div>
+    <div class="svc-item rev"><span class="svc-num">03</span><h3>Automation Workflow</h3><div><p>End-to-end automation across SOAR, Logic Apps, ServiceNow, and Cribl — eliminating manual overhead and connecting every security control into a single, measurable pipeline.</p><div class="chips"><span class="chip chip-n">SOAR</span><span class="chip chip-n">Logic Apps</span><span class="chip chip-n">ServiceNow</span><span class="chip chip-n">Cribl</span></div></div></div>
+    <div class="svc-item rev"><span class="svc-num">04</span><h3>AI-Driven Threat Detection</h3><div><p>ML models trained on real attack patterns monitor your environment continuously — correlating signals across Sentinel, Splunk, and CrowdStrike NG-SIEM before anomalies escalate.</p><div class="chips"><span class="chip chip-n">Sentinel</span><span class="chip chip-n">Splunk</span><span class="chip chip-n">KQL</span><span class="chip chip-n">EDR/XDR</span></div></div></div>
+    <div class="svc-item rev"><span class="svc-num">05</span><h3>Cloud Security Posture</h3><div><p>Continuous visibility into misconfigurations and compliance gaps across AWS, Azure, and GCP — with automated remediation guidance before they're exploited.</p><div class="chips"><span class="chip chip-n">CSPM</span><span class="chip chip-n">AWS</span><span class="chip chip-n">Azure</span><span class="chip chip-n">GCP</span></div></div></div>
+    <div class="svc-item rev"><span class="svc-num">06</span><h3>Predictive Threat Intelligence</h3><div><p>AI models trained on global threat feeds, dark web signals, and adversary behaviour anticipate attacks before they reach your perimeter — every alert enriched with real context.</p><div class="chips"><span class="chip chip-n">Threat Intel</span><span class="chip chip-n">Dark Web</span><span class="chip chip-n">IOC Enrichment</span></div></div></div>
+    <div style="margin-top:2.5rem" class="rev"><a href="#contact" class="btn-gold">Enquire About Security →</a></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     DIVISION 02 — AI APPS
-══════════════════════════════════════════════ -->
-<div class="div-banner">
-  <div class="dbl dbl-apps"></div>
-  <span class="dbt dbt-apps">Division 02 — Consumer AI Applications</span>
-  <div class="dbl dbl-apps"></div>
+<!-- ══════ DIV 02 — AI APPS ══════ -->
+<div class="div-band">
+  <div class="div-band-inner">
+    <div class="div-band-line dlt"></div>
+    <span class="div-band-pill dpt">Division 02 — Consumer AI Applications</span>
+    <div class="div-band-line dlt"></div>
+  </div>
 </div>
 
 <div class="apps-bg">
   <div class="sw" id="apps">
-    <p class="eyebrow ey-teal reveal">AI-Powered · Consumer · Live</p>
-    <h2 class="title-lg reveal">Software people<br>actually enjoy using.</h2>
-    <p class="lede lede-dark reveal">Beyond enterprise security, we design and ship consumer applications with AI built into the architecture from day one — not bolted on. Three products live, more in the pipeline.</p>
+    <div class="section-header rev">
+      <div>
+        <p class="section-label sl-teal">AI-Powered · Consumer · Live</p>
+        <h2 class="section-h2">Software people<br><em>enjoy</em> using.</h2>
+      </div>
+      <p class="section-lede">We design and ship consumer applications with AI built into the architecture from day one — not bolted on. Three products live, more in the pipeline. Each one thoughtfully engineered and genuinely useful.</p>
+    </div>
 
-    <div class="apps-grid">
-
-      <div class="app-card reveal">
-        <div class="app-num">01</div>
-        <div class="app-icon-wrap">TL</div>
+    <div class="app-trio rev">
+      <div class="app-card">
+        <div class="app-n">01</div>
+        <div class="app-icon">TL</div>
         <h3>TinyLearner</h3>
         <p class="app-type">Education · Ages 3–12</p>
-        <p>An adaptive early-education platform that personalises pace, curriculum, and content to how each child actually learns — safe, ad-free, and genuinely engaging.</p>
+        <p>An adaptive early-education platform personalising pace, curriculum, and content to how each child actually learns — safe, ad-free, genuinely engaging.</p>
         <ul class="app-feats">
           <li>AI curriculum personalised per child</li>
           <li>Real-time parent progress tracking</li>
@@ -685,10 +1047,9 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
         </ul>
         <a href="#" class="app-link">Visit TinyLearner →</a>
       </div>
-
-      <div class="app-card reveal d1">
-        <div class="app-num">02</div>
-        <div class="app-icon-wrap">CP</div>
+      <div class="app-card">
+        <div class="app-n">02</div>
+        <div class="app-icon">CP</div>
         <h3>CoParent Share</h3>
         <p class="app-type">Family · Co-Parenting</p>
         <p>Helps separated parents coordinate schedules, expenses, and communication — with AI acting as a neutral, helpful mediator to reduce friction and keep focus on the child.</p>
@@ -700,10 +1061,9 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
         </ul>
         <a href="https://www.coparentshare.com" target="_blank" rel="noopener" class="app-link">Visit coparentshare.com →</a>
       </div>
-
-      <div class="app-card reveal d2">
-        <div class="app-num">03</div>
-        <div class="app-icon-wrap">JN</div>
+      <div class="app-card">
+        <div class="app-n">03</div>
+        <div class="app-icon">JN</div>
         <h3>Journaling App</h3>
         <p class="app-type">Wellness · Mental Health</p>
         <p>A private, intelligent journaling experience that surfaces patterns in your thoughts, suggests reflective prompts, and tracks emotional wellbeing over time.</p>
@@ -715,583 +1075,244 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
         </ul>
         <a href="#" class="app-link">Visit Journaling App →</a>
       </div>
-
     </div>
-    <div style="margin-top:2.25rem">
-      <a href="#contact" class="btn btn-teal">Enquire About Our Apps →</a>
-    </div>
+    <div style="margin-top:2.5rem" class="rev"><a href="#contact" class="btn-ghost">Enquire About Our Apps →</a></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     DIVISION 03 — TESTING
-══════════════════════════════════════════════ -->
-<style>
---purple:#a78bfa;
-.nav-apps{color:var(--teal)!important}
-.nav-apps:hover{background:var(--teal-dim)!important}
-
-.test-bg{background:#0c0a1a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.dbl-test{background:rgba(167,139,250,0.3)}
-.dbt-test{color:#a78bfa;border:1px solid rgba(167,139,250,0.3);background:rgba(167,139,250,0.08)}
-.ey-test{color:#a78bfa}
-
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.2);border-radius:8px;overflow:hidden;margin-bottom:2.5rem}
-.test-card{background:#0c0a1a;padding:1.85rem 1.7rem;transition:background 0.2s}
-.test-card:hover{background:#110e22}
-.test-card-icon{font-size:1.5rem;margin-bottom:0.8rem;display:block}
-.test-card h4{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
-.test-card p{font-size:0.83rem;color:var(--grey-1);line-height:1.68;font-weight:300;margin-bottom:0.85rem}
-.test-tag{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;padding:3px 8px;border-radius:3px;color:#a78bfa;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2)}
-
-.test-table{margin-bottom:2.5rem}
-.test-row{display:grid;grid-template-columns:72px 1fr 1fr;gap:1.75rem;padding:1.6rem 0;border-bottom:1px solid rgba(167,139,250,0.1);align-items:start}
-.test-row:first-of-type{border-top:1px solid rgba(167,139,250,0.1)}
-.ti{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:#a78bfa;padding-top:2px}
-.test-row h3{font-size:1.05rem;font-weight:700;color:var(--white);line-height:1.3}
-.test-row p{font-size:0.86rem;color:var(--grey-1);line-height:1.72;font-weight:300;margin-bottom:0.65rem}
-
-.test-pricing{
-  background:rgba(167,139,250,0.06);
-  border:1px solid rgba(167,139,250,0.2);
-  border-radius:8px;padding:2rem 2.25rem;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:2rem;flex-wrap:wrap;
-  margin-top:2rem;
-}
-.test-pricing-text h4{font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.4rem}
-.test-pricing-text p{font-size:0.88rem;color:var(--grey-1);font-weight:300;max-width:520px;line-height:1.65}
-
-@media(max-width:980px){
-  .test-grid{grid-template-columns:1fr}
-  .test-row{grid-template-columns:1fr}
-  .ti{display:none}
-}
-</style>
-
-<div class="div-banner">
-  <div class="dbl dbl-test"></div>
-  <span class="dbt dbt-test">Division 03 — Quality Assurance & Testing Services</span>
-  <div class="dbl dbl-test"></div>
+<!-- ══════ DIV 03 — TESTING ══════ -->
+<div class="div-band">
+  <div class="div-band-inner">
+    <div class="div-band-line dlp"></div>
+    <span class="div-band-pill dpp">Division 03 — Quality Assurance & Testing</span>
+    <div class="div-band-line dlp"></div>
+  </div>
 </div>
 
 <div class="test-bg">
   <div class="sw" id="testing">
-    <p class="eyebrow ey-test reveal">QA · AI Testing · Software · Agents · LLMs</p>
-    <h2 class="title-lg reveal">Quality that ships<br>confidence, not just code.</h2>
-    <p class="lede lede-dark reveal">We provide comprehensive testing services across the full software and AI development lifecycle — from traditional functional QA through to cutting-edge AI Agent evaluation, LLM behaviour testing, and autonomous workflow validation. Every product we test is production-ready before it goes live.</p>
-
-    <!-- CORE TESTING CARDS -->
-    <div class="test-grid">
-
-      <div class="test-card reveal">
-        <span class="test-card-icon">🤖</span>
-        <h4>AI Agent Testing</h4>
-        <p>Rigorous evaluation of AI agent behaviour — goal completion, tool use accuracy, multi-step reasoning chains, error handling, and edge case resilience across real-world scenarios.</p>
-        <div class="tags"><span class="test-tag">Agent Eval</span><span class="test-tag">Goal Testing</span><span class="test-tag">Tool Use</span></div>
+    <div class="section-header rev">
+      <div>
+        <p class="section-label sl-purple">QA · AI Testing · LLM · Agents · Software</p>
+        <h2 class="section-h2">Quality that ships<br><em>confidence.</em></h2>
       </div>
-
-      <div class="test-card reveal d1">
-        <span class="test-card-icon">🧠</span>
-        <h4>LLM Testing</h4>
-        <p>Systematic evaluation of large language model outputs — hallucination detection, prompt injection resistance, response consistency, safety alignment, and regression testing across model versions.</p>
-        <div class="tags"><span class="test-tag">Hallucination</span><span class="test-tag">Safety</span><span class="test-tag">Regression</span></div>
-      </div>
-
-      <div class="test-card reveal d2">
-        <span class="test-card-icon">⚙️</span>
-        <h4>Workflow & Automation Testing</h4>
-        <p>End-to-end validation of N8N, Zapier, Make, and custom automation pipelines — testing trigger conditions, data transformations, error paths, and integration handoffs across every node.</p>
-        <div class="tags"><span class="test-tag">N8N</span><span class="test-tag">Zapier</span><span class="test-tag">Make</span></div>
-      </div>
-
-      <div class="test-card reveal">
-        <span class="test-card-icon">📱</span>
-        <h4>App Testing</h4>
-        <p>Full-spectrum mobile and web app testing — functional, UI/UX, cross-device compatibility, accessibility, performance under load, and regression suites for iOS, Android, and web.</p>
-        <div class="tags"><span class="test-tag">iOS</span><span class="test-tag">Android</span><span class="test-tag">Web</span></div>
-      </div>
-
-      <div class="test-card reveal d1">
-        <span class="test-card-icon">💻</span>
-        <h4>Software Quality Assurance</h4>
-        <p>Traditional and modern software QA — unit, integration, system, and acceptance testing with automated CI/CD test pipelines, coverage reporting, and defect lifecycle management.</p>
-        <div class="tags"><span class="test-tag">Unit</span><span class="test-tag">Integration</span><span class="test-tag">CI/CD</span></div>
-      </div>
-
-      <div class="test-card reveal d2">
-        <span class="test-card-icon">🔒</span>
-        <h4>Security & Penetration Testing</h4>
-        <p>Vulnerability assessment and pen testing of web applications, APIs, and AI systems — OWASP Top 10 coverage, AI-specific attack vectors including prompt injection and model extraction.</p>
-        <div class="tags"><span class="test-tag">OWASP</span><span class="test-tag">Pen Test</span><span class="test-tag">API Security</span></div>
-      </div>
-
+      <p class="section-lede">Comprehensive testing across the full software and AI lifecycle — from traditional functional QA through to cutting-edge AI Agent evaluation, LLM behaviour testing, and autonomous workflow validation.</p>
     </div>
 
-    <!-- COMPREHENSIVE TABLE -->
-    <p class="eyebrow ey-test reveal" style="margin-bottom:1.5rem">Comprehensive Testing Services</p>
-
-    <div class="test-table">
-
-      <div class="test-row reveal">
-        <span class="ti">01</span>
-        <h3>Functional & Regression Testing</h3>
-        <div>
-          <p>Systematic validation that every feature works as specified — and keeps working as your codebase evolves. Automated regression suites catch regressions before they reach production.</p>
-          <div class="tags"><span class="test-tag">Selenium</span><span class="test-tag">Playwright</span><span class="test-tag">Cypress</span></div>
-        </div>
-      </div>
-
-      <div class="test-row reveal">
-        <span class="ti">02</span>
-        <h3>API & Integration Testing</h3>
-        <div>
-          <p>Contract testing, schema validation, and end-to-end integration verification across REST, GraphQL, and event-driven APIs — including third-party and AI model API integrations.</p>
-          <div class="tags"><span class="test-tag">Postman</span><span class="test-tag">REST</span><span class="test-tag">GraphQL</span></div>
-        </div>
-      </div>
-
-      <div class="test-row reveal">
-        <span class="ti">03</span>
-        <h3>Performance & Load Testing</h3>
-        <div>
-          <p>Stress testing, load simulation, and latency profiling to ensure your software and AI systems perform reliably at scale — including LLM inference latency benchmarking.</p>
-          <div class="tags"><span class="test-tag">k6</span><span class="test-tag">JMeter</span><span class="test-tag">Benchmarking</span></div>
-        </div>
-      </div>
-
-      <div class="test-row reveal">
-        <span class="ti">04</span>
-        <h3>AI Model Evaluation & Benchmarking</h3>
-        <div>
-          <p>Custom evaluation frameworks for AI models across accuracy, coherence, groundedness, toxicity, and task-specific performance — with structured benchmark reporting for stakeholders.</p>
-          <div class="tags"><span class="test-tag">Evals</span><span class="test-tag">RAGAS</span><span class="test-tag">Custom Benchmarks</span></div>
-        </div>
-      </div>
-
-      <div class="test-row reveal">
-        <span class="ti">05</span>
-        <h3>Prompt Engineering & Adversarial Testing</h3>
-        <div>
-          <p>Systematic testing of prompts for robustness, jailbreak resistance, and consistent output quality — including red-teaming AI systems for adversarial inputs and unexpected behaviour.</p>
-          <div class="tags"><span class="test-tag">Red Teaming</span><span class="test-tag">Jailbreak</span><span class="test-tag">Prompt QA</span></div>
-        </div>
-      </div>
-
-      <div class="test-row reveal">
-        <span class="ti">06</span>
-        <h3>UAT & Acceptance Testing</h3>
-        <div>
-          <p>Structured user acceptance testing with real stakeholders — scenario design, facilitation, defect capture, and sign-off documentation aligned to business requirements.</p>
-          <div class="tags"><span class="test-tag">UAT</span><span class="test-tag">BDD</span><span class="test-tag">Gherkin</span></div>
-        </div>
-      </div>
-
-      <div class="test-row reveal">
-        <span class="ti">07</span>
-        <h3>Accessibility & Compliance Testing</h3>
-        <div>
-          <p>WCAG 2.1 AA compliance testing for web and mobile apps, plus AI fairness and bias auditing to ensure your products meet both legal standards and ethical expectations.</p>
-          <div class="tags"><span class="test-tag">WCAG 2.1</span><span class="test-tag">Axe</span><span class="test-tag">Bias Audit</span></div>
-        </div>
-      </div>
-
+    <div class="test-grid-6">
+      <div class="test-card rev"><span class="test-icon">🤖</span><h4>AI Agent Testing</h4><p>Goal completion, tool use accuracy, multi-step reasoning, error handling, and edge case resilience across real-world scenarios.</p><div class="chips"><span class="chip chip-p">Agent Eval</span><span class="chip chip-p">Goal Testing</span></div></div>
+      <div class="test-card rev d1"><span class="test-icon">🧠</span><h4>LLM Testing</h4><p>Hallucination detection, prompt injection resistance, response consistency, safety alignment, and regression across model versions.</p><div class="chips"><span class="chip chip-p">Hallucination</span><span class="chip chip-p">Safety</span></div></div>
+      <div class="test-card rev d2"><span class="test-icon">⚙️</span><h4>Workflow Testing</h4><p>End-to-end validation of N8N, Zapier, Make, and custom pipelines — trigger conditions, data transformations, error paths, integration handoffs.</p><div class="chips"><span class="chip chip-n">N8N</span><span class="chip chip-n">Zapier</span><span class="chip chip-n">Make</span></div></div>
+      <div class="test-card rev"><span class="test-icon">📱</span><h4>App Testing</h4><p>Full-spectrum mobile and web — functional, UI/UX, cross-device, accessibility, performance, and regression suites for iOS, Android, and web.</p><div class="chips"><span class="chip chip-n">iOS</span><span class="chip chip-n">Android</span><span class="chip chip-n">Web</span></div></div>
+      <div class="test-card rev d1"><span class="test-icon">💻</span><h4>Software QA</h4><p>Unit, integration, system, and acceptance testing with automated CI/CD pipelines, coverage reporting, and defect lifecycle management.</p><div class="chips"><span class="chip chip-n">CI/CD</span><span class="chip chip-n">Playwright</span><span class="chip chip-n">Cypress</span></div></div>
+      <div class="test-card rev d2"><span class="test-icon">🔒</span><h4>Security Testing</h4><p>OWASP Top 10 coverage, AI-specific attack vectors including prompt injection and model extraction, API security, and penetration testing.</p><div class="chips"><span class="chip chip-p">OWASP</span><span class="chip chip-p">Pen Test</span></div></div>
     </div>
 
-    <!-- PRICING CTA -->
-    <div class="test-pricing reveal">
-      <div class="test-pricing-text">
-        <h4>Flexible Pricing — Contact Us</h4>
-        <p>Our testing services are scoped and priced based on your project complexity, timeline, and coverage requirements. We offer fixed-scope engagements, retainer models, and embedded QA team options. Get in touch to discuss what's right for your project.</p>
-      </div>
-      <a href="#contact" class="btn btn-grad" style="white-space:nowrap;flex-shrink:0">Get a Testing Quote →</a>
+    <div style="margin-bottom:1.5rem" class="rev">
+      <p class="section-label sl-purple">Comprehensive Service Detail</p>
+    </div>
+    <div class="rev">
+      <div class="test-svc-row"><span class="tsr-num">01</span><h3>Functional & Regression Testing</h3><div><p>Systematic validation that every feature works as specified — and keeps working as your codebase evolves. Automated regression suites catch issues before production.</p><div class="chips"><span class="chip chip-n">Selenium</span><span class="chip chip-n">Playwright</span><span class="chip chip-n">Cypress</span></div></div></div>
+      <div class="test-svc-row"><span class="tsr-num">02</span><h3>API & Integration Testing</h3><div><p>Contract testing, schema validation, and end-to-end integration verification across REST, GraphQL, and event-driven APIs — including AI model API integrations.</p><div class="chips"><span class="chip chip-n">Postman</span><span class="chip chip-n">REST</span><span class="chip chip-n">GraphQL</span></div></div></div>
+      <div class="test-svc-row"><span class="tsr-num">03</span><h3>Performance & Load Testing</h3><div><p>Stress testing, load simulation, and latency profiling to ensure your software and AI systems perform reliably at scale — including LLM inference benchmarking.</p><div class="chips"><span class="chip chip-n">k6</span><span class="chip chip-n">JMeter</span><span class="chip chip-n">Benchmarking</span></div></div></div>
+      <div class="test-svc-row"><span class="tsr-num">04</span><h3>AI Model Evaluation & Benchmarking</h3><div><p>Custom evaluation frameworks across accuracy, coherence, groundedness, toxicity, and task-specific performance — with structured benchmark reporting.</p><div class="chips"><span class="chip chip-p">Evals</span><span class="chip chip-p">RAGAS</span><span class="chip chip-p">Custom Benchmarks</span></div></div></div>
+      <div class="test-svc-row"><span class="tsr-num">05</span><h3>Adversarial & Red Team Testing</h3><div><p>Systematic testing of prompts for robustness, jailbreak resistance, and consistent output — including red-teaming AI systems for adversarial inputs.</p><div class="chips"><span class="chip chip-p">Red Teaming</span><span class="chip chip-p">Jailbreak</span><span class="chip chip-n">Prompt QA</span></div></div></div>
+      <div class="test-svc-row"><span class="tsr-num">06</span><h3>UAT & Accessibility Testing</h3><div><p>Structured user acceptance testing, WCAG 2.1 AA compliance, and AI fairness auditing to ensure products meet legal standards and ethical expectations.</p><div class="chips"><span class="chip chip-n">WCAG 2.1</span><span class="chip chip-n">UAT</span><span class="chip chip-n">BDD</span></div></div></div>
     </div>
 
+    <div class="pricing-banner rev">
+      <div>
+        <h4>Flexible Pricing — Contact Us for a Quote</h4>
+        <p>Fixed-scope engagements, retainer models, and embedded QA team options. Scoped and priced based on your project complexity, timeline, and coverage requirements.</p>
+      </div>
+      <a href="#contact" class="btn-gold" style="flex-shrink:0">Get a Testing Quote →</a>
+    </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     ABOUT
-══════════════════════════════════════════════ -->
-<style>
-/* Additional About styles */
-.about-intro{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:4rem;align-items:start}
-.about-intro p{font-size:0.95rem;color:var(--grey-1);line-height:1.85;font-weight:300;margin-bottom:1rem}
-.about-intro strong{color:var(--white);font-weight:600}
-
-.agents-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:3rem}
-.agent-card{background:var(--navy-card);padding:1.75rem 1.6rem;transition:background 0.2s}
-.agent-card:hover{background:var(--navy-3)}
-.agent-icon{font-size:1.6rem;margin-bottom:0.85rem;display:block}
-.agent-card h4{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
-.agent-card p{font-size:0.82rem;color:var(--grey-1);line-height:1.65;font-weight:300}
-.agent-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:0.75rem}
-
-.tech-section{margin-bottom:3.5rem}
-.tech-section h3{font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:1.25rem}
-.tech-row{display:flex;flex-wrap:wrap;gap:8px}
-.tech-pill{
-  font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
-  letter-spacing:0.03em;padding:7px 14px;border-radius:20px;
-  border:1px solid var(--line);color:var(--grey-1);
-  background:var(--navy-card);transition:border-color 0.2s,color 0.2s;
-}
-.tech-pill:hover{border-color:var(--teal);color:var(--teal)}
-.tech-pill.grad-pill{
-  background:linear-gradient(135deg,rgba(100,120,220,0.12),rgba(40,195,175,0.12));
-  border-color:rgba(40,195,175,0.3);color:var(--teal);
-}
-
-.offices-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:3.5rem}
-.office-card{background:var(--navy-card);padding:1.6rem 1.5rem}
-.office-flag{font-size:1.5rem;margin-bottom:0.6rem;display:block}
-.office-card h4{font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:0.3rem}
-.office-card .o-role{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem}
-.office-card p{font-size:0.82rem;color:var(--grey-1);line-height:1.6;font-weight:300}
-.office-card a{color:var(--teal);text-decoration:none;font-size:0.82rem}
-.office-card a:hover{opacity:0.7}
-
-.founder-strip{display:grid;grid-template-columns:160px 1fr;gap:2.5rem;align-items:start;padding:2rem;background:var(--navy-card);border:1px solid var(--line);border-radius:8px}
-.f-portrait-sm{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--navy-3),var(--navy-2));border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--teal);margin-bottom:0.75rem}
-.f-name-sm{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:2px}
-.f-role-sm{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--teal);margin-bottom:2px}
-.f-company-sm{font-size:0.78rem;color:var(--grey-2)}
-.founder-bio-text p{font-size:0.9rem;color:var(--grey-1);line-height:1.82;font-weight:300;margin-bottom:0.9rem;max-width:680px}
-.founder-bio-text strong{color:var(--white);font-weight:600}
-.founder-bio-text blockquote{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;color:var(--white);border-left:3px solid var(--teal);padding-left:1.1rem;margin-bottom:1.25rem;line-height:1.5}
-
-@media(max-width:980px){
-  .about-intro{grid-template-columns:1fr}
-  .agents-grid{grid-template-columns:1fr}
-  .offices-row{grid-template-columns:1fr}
-  .founder-strip{grid-template-columns:1fr}
-}
-</style>
-
-<div class="about-bg">
+<!-- ══════ ABOUT ══════ -->
+<div style="background:var(--void);border-top:1px solid var(--border)">
   <div class="sw" id="about">
-
-    <p class="eyebrow ey-grad reveal">About Xfiniti Technologies</p>
-    <h2 class="title-lg reveal">We build AI Agents that work<br>so your team doesn't have to.</h2>
-
-    <div class="about-intro reveal">
+    <div class="section-header rev">
       <div>
-        <p>Xfiniti Technologies is an <strong>AI product development company</strong> designing and deploying intelligent AI Agents for businesses of all sizes — from global enterprises to local retailers. We help organisations automate their most time-consuming processes, integrate AI into their existing workflows, and build proprietary agents that deliver measurable outcomes.</p>
-        <p>Whether you need an AI Agent that handles customer enquiries around the clock, automates your back-office operations, or monitors and responds to cybersecurity threats autonomously — we build, train, and deploy it end-to-end.</p>
+        <p class="section-label sl-gold">About Xfiniti Technologies</p>
+        <h2 class="section-h2">Built to build<br><em>what's next.</em></h2>
       </div>
-      <div>
-        <p>Our international team spans <strong>Sydney, India, and San Francisco</strong>, giving us the reach to support clients across Asia-Pacific, North America, and beyond. We combine deep technical engineering with genuine product thinking — every agent we build is designed to be practical, reliable, and immediately impactful.</p>
-        <p>Alongside our AI Agent practice, Xfiniti runs an enterprise <strong>cybersecurity division</strong> and a <strong>consumer apps portfolio</strong> — making us one of a rare group of technology companies operating successfully across all three disciplines simultaneously.</p>
+      <p class="section-lede">An AI product development company designing and deploying intelligent agents for businesses of every size — from global enterprises to ambitious SMEs. Four divisions. One standard.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-left rev">
+        <p>Xfiniti Technologies is an <strong>AI product development company</strong> designing and deploying intelligent AI Agents for businesses of all sizes. We help organisations automate their most time-consuming processes, integrate AI into existing workflows, and build proprietary agents that deliver measurable outcomes.</p>
+        <p>Our international team spans <strong>Sydney, India, and San Francisco</strong> — giving us the reach to support clients across Asia-Pacific, North America, and beyond. We combine deep technical engineering with genuine product thinking. Every agent we build is practical, reliable, and immediately impactful.</p>
+        <p>Alongside our AI Agent practice, Xfiniti runs an enterprise <strong>cybersecurity division</strong>, a <strong>consumer apps portfolio</strong>, and a <strong>QA & testing practice</strong> — making us one of a rare group of technology companies operating credibly across all four disciplines simultaneously.</p>
+
+        <div class="sectors-wrap">
+          <span class="label" style="color:var(--muted)">Industries Supported</span>
+          <div class="sectors">
+            <span class="sector">🏦 Banking</span>
+            <span class="sector">🛡️ Insurance</span>
+            <span class="sector">⚡ Utilities</span>
+            <span class="sector">🌿 Energy</span>
+            <span class="sector">💻 Technology</span>
+            <span class="sector">🛒 Retail</span>
+            <span class="sector">⛏️ Mining</span>
+            <span class="sector">✈️ Aviation</span>
+            <span class="sector">🏥 Healthcare</span>
+            <span class="sector">🏛️ Government</span>
+            <span class="sector">🏭 Manufacturing</span>
+            <span class="sector">📡 Telecom</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-right rev d1">
+        <div style="margin-bottom:2rem">
+          <span class="label" style="color:var(--muted);display:block;margin-bottom:1rem">AI Agent Portfolio</span>
+          <div class="agent-list">
+            <div class="agent-row"><span class="agent-emoji">🛒</span><div><h4>Retail AI Agents</h4><p>Product recommendations, order tracking, abandoned cart recovery, 24×7 customer support</p></div><span class="agent-arrow">→</span></div>
+            <div class="agent-row"><span class="agent-emoji">⚙️</span><div><h4>Business Process Agents</h4><p>Invoice processing, HR onboarding, procurement approvals, automated reporting</p></div><span class="agent-arrow">→</span></div>
+            <div class="agent-row"><span class="agent-emoji">🔒</span><div><h4>Cybersecurity SOC Agents</h4><p>Alert triage, threat response, playbook execution — autonomous and continuous</p></div><span class="agent-arrow">→</span></div>
+            <div class="agent-row"><span class="agent-emoji">💬</span><div><h4>Customer Experience Agents</h4><p>Conversational AI trained on your knowledge base — resolving, escalating, booking</p></div><span class="agent-arrow">→</span></div>
+            <div class="agent-row"><span class="agent-emoji">📊</span><div><h4>Data & Analytics Agents</h4><p>Automated reports, anomaly detection, plain-language insights on demand</p></div><span class="agent-arrow">→</span></div>
+          </div>
+        </div>
+
+        <div>
+          <span class="label" style="color:var(--muted);display:block;margin-bottom:1.1rem">Technologies We Build With</span>
+          <div class="tech-block">
+            <span class="tech-block-label">AI Models</span>
+            <div class="tech-chips"><span class="tc tc-gold">Claude</span><span class="tc tc-gold">Claude Code</span><span class="tc tc-gold">GPT-4o</span><span class="tc tc-gold">Grok</span><span class="tc">Gemini</span><span class="tc">Llama 3</span></div>
+          </div>
+          <div class="tech-block">
+            <span class="tech-block-label">Automation</span>
+            <div class="tech-chips"><span class="tc">N8N</span><span class="tc">Zapier</span><span class="tc">Make</span><span class="tc">Power Automate</span><span class="tc">ServiceNow</span><span class="tc">Cribl</span></div>
+          </div>
+          <div class="tech-block">
+            <span class="tech-block-label">Engineering</span>
+            <div class="tech-chips"><span class="tc">Next.js</span><span class="tc">React</span><span class="tc">Python</span><span class="tc">Supabase</span><span class="tc">AWS</span><span class="tc">Azure</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SECTOR EXPERIENCE -->
-    <div style="margin-bottom:3rem;" class="reveal">
-      <p class="eyebrow ey-teal" style="margin-bottom:1rem">Industries We've Served</p>
-      <p style="font-size:0.9rem;color:var(--grey-1);font-weight:300;max-width:620px;margin-bottom:1.5rem;line-height:1.75">Our AI Agents and technology solutions have been designed, built, and deployed across some of Australia's most demanding sectors — for organisations ranging from ASX-listed enterprises to fast-growing SMEs.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;">
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(96,165,250,0.3);color:#60a5fa;background:rgba(96,165,250,0.07)">🏦 Banking &amp; Financial Services</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(52,211,153,0.3);color:#34d399;background:rgba(52,211,153,0.07)">🛡️ Insurance</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(251,191,36,0.3);color:#fbbf24;background:rgba(251,191,36,0.07)">⚡ Utilities &amp; Infrastructure</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(74,222,128,0.3);color:#4ade80;background:rgba(74,222,128,0.07)">🌿 Energy</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(40,195,175,0.3);color:var(--teal);background:var(--teal-dim)">💻 Technology</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(248,113,113,0.3);color:#f87171;background:rgba(248,113,113,0.07)">🛒 Retail</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(251,146,60,0.3);color:#fb923c;background:rgba(251,146,60,0.07)">⛏️ Mining &amp; Resources</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(167,139,250,0.3);color:#a78bfa;background:rgba(167,139,250,0.07)">✈️ Aviation</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(244,114,182,0.3);color:#f472b6;background:rgba(244,114,182,0.07)">🏥 Healthcare</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(148,163,184,0.3);color:#94a3b8;background:rgba(148,163,184,0.07)">🏛️ Government</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(251,191,36,0.3);color:#fbbf24;background:rgba(251,191,36,0.07)">🏭 Manufacturing</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.75rem;padding:8px 16px;border-radius:4px;border:1px solid rgba(52,211,153,0.3);color:#34d399;background:rgba(52,211,153,0.07)">📡 Telecommunications</span>
-      </div>
-    </div>
-
-    <!-- AI AGENTS -->
-    <p class="eyebrow ey-teal reveal" style="margin-bottom:1.25rem">AI Agent Portfolio</p>
-    <div class="agents-grid">
-
-      <div class="agent-card reveal">
-        <span class="agent-icon">🛒</span>
-        <h4>Retail AI Agents</h4>
-        <p>Intelligent agents that handle product recommendations, inventory queries, order tracking, abandoned cart recovery, and customer support — 24×7, across web, app, and messaging channels.</p>
-        <div class="agent-tags">
-          <span class="tag tt">E-Commerce</span><span class="tag tt">Customer Support</span><span class="tag tt">Retail Ops</span>
-        </div>
-      </div>
-
-      <div class="agent-card reveal d1">
-        <span class="agent-icon">⚙️</span>
-        <h4>Business Process Agents</h4>
-        <p>End-to-end automation of repetitive business workflows — invoice processing, HR onboarding, procurement approvals, reporting, and compliance checks — fully integrated with your existing systems.</p>
-        <div class="agent-tags">
-          <span class="tag tt">BPA</span><span class="tag tt">ERP Integration</span><span class="tag tt">Workflow</span>
-        </div>
-      </div>
-
-      <div class="agent-card reveal d2">
-        <span class="agent-icon">🔒</span>
-        <h4>Cybersecurity SOC Agents</h4>
-        <p>Autonomous agents that triage security alerts, correlate threat signals, execute response playbooks, and escalate incidents — replacing manual SOC tasks with AI that never sleeps.</p>
-        <div class="agent-tags">
-          <span class="tag tc">SOC</span><span class="tag tc">SIEM</span><span class="tag tc">Incident Response</span>
-        </div>
-      </div>
-
-      <div class="agent-card reveal">
-        <span class="agent-icon">💬</span>
-        <h4>Customer Experience Agents</h4>
-        <p>Conversational AI agents trained on your business knowledge base — answering questions, resolving complaints, booking appointments, and escalating to humans when needed.</p>
-        <div class="agent-tags">
-          <span class="tag tt">CX</span><span class="tag tt">Chatbot</span><span class="tag tt">NLP</span>
-        </div>
-      </div>
-
-      <div class="agent-card reveal d1">
-        <span class="agent-icon">📊</span>
-        <h4>Data & Analytics Agents</h4>
-        <p>Agents that connect to your data sources, generate automated reports, surface anomalies, and deliver plain-language business insights to decision makers — on schedule or on demand.</p>
-        <div class="agent-tags">
-          <span class="tag tt">BI</span><span class="tag tt">Reporting</span><span class="tag tt">Data Ops</span>
-        </div>
-      </div>
-
-      <div class="agent-card reveal d2">
-        <span class="agent-icon">🏥</span>
-        <h4>Industry-Specific Agents</h4>
-        <p>Custom-built agents for healthcare (patient triage, appointment scheduling), legal (document review, contract analysis), finance (fraud detection, loan processing), and more.</p>
-        <div class="agent-tags">
-          <span class="tag tt">Healthcare</span><span class="tag tt">Legal</span><span class="tag tt">Finance</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- TECHNOLOGIES -->
-    <div class="tech-section reveal">
-      <p class="eyebrow ey-grad" style="margin-bottom:1rem">Technologies We Build With</p>
-
-      <h3>AI Models & Frontier LLMs</h3>
-      <div class="tech-row" style="margin-bottom:1.5rem">
-        <span class="tech-pill grad-pill">Claude (Anthropic)</span>
-        <span class="tech-pill grad-pill">Claude Code</span>
-        <span class="tech-pill grad-pill">OpenAI GPT-4o</span>
-        <span class="tech-pill grad-pill">Grok (xAI)</span>
-        <span class="tech-pill grad-pill">Gemini</span>
-        <span class="tech-pill grad-pill">Llama 3</span>
-        <span class="tech-pill grad-pill">Mistral</span>
-      </div>
-
-      <h3>Automation & Workflow Platforms</h3>
-      <div class="tech-row" style="margin-bottom:1.5rem">
-        <span class="tech-pill">N8N</span>
-        <span class="tech-pill">Zapier</span>
-        <span class="tech-pill">Make (Integromat)</span>
-        <span class="tech-pill">Microsoft Power Automate</span>
-        <span class="tech-pill">Logic Apps</span>
-        <span class="tech-pill">ServiceNow</span>
-        <span class="tech-pill">Cribl</span>
-        <span class="tech-pill">Activepieces</span>
-      </div>
-
-      <h3>Development & Infrastructure</h3>
-      <div class="tech-row" style="margin-bottom:1.5rem">
-        <span class="tech-pill">Next.js</span>
-        <span class="tech-pill">React</span>
-        <span class="tech-pill">Python</span>
-        <span class="tech-pill">Node.js</span>
-        <span class="tech-pill">Supabase</span>
-        <span class="tech-pill">AWS</span>
-        <span class="tech-pill">Azure</span>
-        <span class="tech-pill">GCP</span>
-        <span class="tech-pill">Docker</span>
-        <span class="tech-pill">Vercel</span>
-      </div>
-
-      <h3>Security & SOC Platforms</h3>
-      <div class="tech-row">
-        <span class="tech-pill">Microsoft Sentinel</span>
-        <span class="tech-pill">Splunk</span>
-        <span class="tech-pill">CrowdStrike</span>
-        <span class="tech-pill">SOAR</span>
-        <span class="tech-pill">EDR/XDR</span>
-        <span class="tech-pill">KQL</span>
-        <span class="tech-pill">Defender ATP</span>
-      </div>
-    </div>
-
-    <!-- OFFICES -->
-    <p class="eyebrow ey-grad reveal" style="margin-bottom:1.25rem">Global Operations</p>
-    <div class="offices-row">
-
-      <div class="office-card reveal">
+    <div class="offices-3 rev">
+      <div class="office">
         <span class="office-flag">🇦🇺</span>
         <h4>Sydney, Australia</h4>
-        <div class="o-role">Headquarters</div>
-        <p>Our founding base and primary delivery hub, serving enterprise clients across Australia and the Asia-Pacific region.</p>
-        <p style="margin-top:0.75rem"><a href="mailto:info@xfiniti.com.au">info@xfiniti.com.au</a></p>
-        <p><a href="tel:+61427172689">+61 427 172 689</a></p>
+        <div class="office-role">Headquarters</div>
+        <p>Primary delivery hub serving enterprise clients across Australia and Asia-Pacific.</p>
+        <a href="tel:+61427172689">+61 427 172 689</a>
+        <a href="mailto:info@xfiniti.com.au">info@xfiniti.com.au</a>
       </div>
-
-      <div class="office-card reveal d1">
+      <div class="office">
         <span class="office-flag">🇮🇳</span>
         <h4>India</h4>
-        <div class="o-role">Engineering & Delivery</div>
-        <p>Our India team provides around-the-clock engineering support, AI model training, agent development, and 24×7 SOC operations coverage.</p>
-        <p style="margin-top:0.75rem"><a href="tel:+917977362960">+91 797 736 2960</a></p>
-        <p><a href="mailto:info@xfiniti.com.au">info@xfiniti.com.au</a></p>
+        <div class="office-role">Engineering & Delivery</div>
+        <p>Around-the-clock engineering, AI model training, agent development, and 24×7 SOC coverage.</p>
+        <a href="tel:+917977362960">+91 797 736 2960</a>
+        <a href="mailto:info@xfiniti.com.au">info@xfiniti.com.au</a>
       </div>
-
-      <div class="office-card reveal d2">
+      <div class="office">
         <span class="office-flag">🇺🇸</span>
         <h4>San Francisco, USA</h4>
-        <div class="o-role">Business Development</div>
-        <p>Our US presence focuses on partnerships, enterprise sales, and keeping us connected to the frontier AI ecosystem and Silicon Valley innovation.</p>
-        <p style="margin-top:0.75rem"><a href="tel:+19497345661">+1 949 734 5661</a></p>
-        <p><a href="mailto:info@xfiniti.com.au">info@xfiniti.com.au</a></p>
+        <div class="office-role">Business Development</div>
+        <p>Partnerships, enterprise sales, and connection to the frontier AI ecosystem.</p>
+        <a href="tel:+19497345661">+1 949 734 5661</a>
+        <a href="mailto:info@xfiniti.com.au">info@xfiniti.com.au</a>
       </div>
-
     </div>
 
-    <!-- FOUNDER -->
-    <p class="eyebrow ey-grad reveal" style="margin-bottom:1.25rem">Leadership</p>
-    <div class="founder-strip reveal">
+    <div class="founder-card rev">
+      <div class="founder-portrait">MS</div>
       <div>
-        <div class="f-portrait-sm">MS</div>
-        <p class="f-name-sm">Mayur Shah</p>
-        <p class="f-role-sm">Director</p>
-        <p class="f-company-sm">Xfiniti Technologies Pty Ltd</p>
-      </div>
-      <div class="founder-bio-text">
-        <blockquote>"AI Agents aren't the future — they're available right now. We help businesses deploy them today."</blockquote>
-        <p>Mayur Shah is the Director of Xfiniti Technologies, leading the company's global AI Agent development practice, enterprise cybersecurity division, and consumer software portfolio. Under his leadership, Xfiniti has built and deployed AI Agents across retail, financial services, healthcare, and government sectors — combining frontier model expertise with real-world engineering discipline.</p>
-        <p>With <strong>20+ years</strong> across IT Security Operations, DevSecOps, Cloud Computing, AI/ML, and product development, Mayur has delivered outcomes for some of Australia's most complex organisations including <strong>NAB, ANZ, IAG, BUPA, and AusNet</strong>. He leads an international team spanning Sydney, India, and San Francisco — delivering AI solutions that are production-ready, not just proof-of-concept.</p>
+        <p class="founder-name">Mayur Shah</p>
+        <p class="founder-title">Director</p>
+        <p class="founder-co">Xfiniti Technologies Pty Ltd</p>
+        <p class="founder-quote">"AI Agents aren't the future — they're available right now. We help businesses deploy them today."</p>
+        <div class="founder-bio">
+          <p>Mayur Shah is the Director of Xfiniti Technologies, leading the company's global AI Agent development practice, enterprise cybersecurity division, consumer software portfolio, and QA practice. Under his leadership, Xfiniti has built and deployed AI Agents across retail, financial services, healthcare, and government sectors.</p>
+          <p>With <strong>20+ years</strong> across IT Security Operations, DevSecOps, Cloud Computing, AI/ML, and product development, Mayur has delivered outcomes for organisations including <strong>NAB, ANZ, IAG, BUPA, AusNet, Dyno Nobel, Incitec Pivot, IBM, Coles, and Origin Energy</strong> — across banking, insurance, utilities, technology, retail, mining, and energy sectors.</p>
+        </div>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PROCESS
-══════════════════════════════════════════════ -->
-<div class="process-bg">
+<!-- ══════ PROCESS ══════ -->
+<div class="process-bg" style="border-top:1px solid var(--border)">
   <div class="sw" id="process">
-    <p class="eyebrow ey-grad reveal">How We Work</p>
-    <h2 class="title-lg reveal">From discovery to deployment —<br>no surprises.</h2>
-
-    <div class="reveal d1">
-      <div class="process-row">
-        <span class="pn">01</span>
-        <div><h4>Discovery &amp; Assessment</h4><p>We audit your current posture, infrastructure, and business objectives to map gaps and define the right solution architecture.</p></div>
+    <div class="section-header rev">
+      <div>
+        <p class="section-label sl-gold">How We Work</p>
+        <h2 class="section-h2">From discovery<br>to deployment.</h2>
       </div>
-      <div class="process-row">
-        <span class="pn">02</span>
-        <div><h4>AI Strategy &amp; Design</h4><p>Our engineers design a tailored Agentic AI or security architecture aligned with your risk tolerance, compliance requirements, and budget.</p></div>
-      </div>
-      <div class="process-row">
-        <span class="pn">03</span>
-        <div><h4>Build &amp; Integrate</h4><p>We implement, configure, and integrate every component — from SIEM to AI agent pipelines — with minimal disruption to operations.</p></div>
-      </div>
-      <div class="process-row">
-        <span class="pn">04</span>
-        <div><h4>Monitor &amp; Evolve</h4><p>Post-deployment, we continuously tune AI models, evolve automation workflows, and adapt your posture as threats and your business change.</p></div>
-      </div>
+      <p class="section-lede">A clear, proven methodology across every engagement — no surprises, no scope creep, no hand-waving. Just rigorous delivery.</p>
+    </div>
+    <div class="process-4 rev">
+      <div class="p-cell"><div class="p-n">01</div><h4>Discovery & Assessment</h4><p>We audit your current posture, infrastructure, and business objectives to map gaps and define the right architecture.</p></div>
+      <div class="p-cell"><div class="p-n">02</div><h4>Strategy & Design</h4><p>Tailored AI or security architecture aligned with your risk tolerance, compliance requirements, and budget.</p></div>
+      <div class="p-cell"><div class="p-n">03</div><h4>Build & Integrate</h4><p>We implement, configure, and integrate every component — from SIEM to AI agent pipelines — with minimal operational disruption.</p></div>
+      <div class="p-cell"><div class="p-n">04</div><h4>Monitor & Evolve</h4><p>Post-deployment, we continuously tune AI models, evolve automation workflows, and adapt as your business changes.</p></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     CONTACT
-══════════════════════════════════════════════ -->
-<div class="contact-bg">
+<!-- ══════ CONTACT ══════ -->
+<div class="contact-bg" style="border-top:1px solid var(--border)">
   <div class="sw" id="contact">
-    <p class="eyebrow ey-grad reveal">Contact Us</p>
-    <h2 class="title-lg reveal">Let's start a conversation.</h2>
-    <p class="lede lede-dark reveal">Whether you need Agentic AI SOC, enterprise cybersecurity, or want to build the next AI-powered product — we'd like to hear from you.</p>
+    <div class="section-header rev">
+      <div>
+        <p class="section-label sl-gold">Contact</p>
+        <h2 class="section-h2">Let's start a<br><em>conversation.</em></h2>
+      </div>
+      <p class="section-lede">Agentic AI SOC, cybersecurity, AI Agents, testing, or consumer software — we'd like to hear from you.</p>
+    </div>
 
-    <div class="contact-layout">
-      <div class="reveal">
-        <div class="ci-block">
-          <p class="ci-label">Email</p>
-          <a href="mailto:info@xfiniti.com.au" class="ci-val">info@xfiniti.com.au</a>
-        </div>
-        <div class="ci-block">
-          <p class="ci-label">Australia</p>
-          <a href="tel:+61427172689" class="ci-val">+61 427 172 689</a>
-        </div>
-        <div class="ci-block">
-          <p class="ci-label">India</p>
-          <a href="tel:+917977362960" class="ci-val">+91 797 736 2960</a>
-        </div>
-        <div class="ci-block">
-          <p class="ci-label">Location</p>
-          <p class="ci-val">Sydney · India · San Francisco<br><span style="color:var(--grey-2);font-size:0.84rem">Global operations, worldwide clients</span></p>
-        </div>
-        <div class="ci-block">
-          <p class="ci-note">We typically respond within one business day.</p>
-        </div>
+    <div class="contact-split">
+      <div class="rev">
+        <div class="c-info-item"><p class="c-info-label">Email</p><a href="mailto:info@xfiniti.com.au" class="c-info-val">info@xfiniti.com.au</a></div>
+        <div class="c-info-item"><p class="c-info-label">Australia</p><a href="tel:+61427172689" class="c-info-val">+61 427 172 689</a></div>
+        <div class="c-info-item"><p class="c-info-label">India</p><a href="tel:+917977362960" class="c-info-val">+91 797 736 2960</a></div>
+        <div class="c-info-item"><p class="c-info-label">San Francisco</p><a href="tel:+19497345661" class="c-info-val">+1 949 734 5661</a></div>
+        <div class="c-info-item"><p class="c-info-label">Offices</p><p class="c-info-val" style="color:var(--cream-2)">Sydney · India · San Francisco</p></div>
+        <p class="c-note">We typically respond within one business day.</p>
       </div>
 
-      <div class="reveal d1">
+      <div class="rev d1">
         <div id="form-success" class="form-ok" style="display:none">
-          <h3>Message sent.</h3>
-          <p>Thanks for reaching out — Mayur or a member of the Xfiniti team will be in touch shortly.</p>
+          <h3>Message received.</h3>
+          <p>Thank you for reaching out — Mayur or a member of the Xfiniti team will be in touch shortly.</p>
         </div>
         <div id="contact-form">
-          <div class="form-row">
-            <div class="fg">
-              <label class="fl" for="cf-name">Full Name <span class="fr-req">*</span></label>
-              <input class="fi" type="text" id="cf-name" placeholder="Jane Smith" autocomplete="name">
-            </div>
-            <div class="fg">
-              <label class="fl" for="cf-company">Company</label>
-              <input class="fi" type="text" id="cf-company" placeholder="Acme Corp" autocomplete="organization">
-            </div>
+          <div class="f-row">
+            <div class="fg"><label class="fl" for="cf-name">Full Name <span class="fr-req">*</span></label><input class="fi" type="text" id="cf-name" placeholder="Jane Smith" autocomplete="name"></div>
+            <div class="fg"><label class="fl" for="cf-company">Company</label><input class="fi" type="text" id="cf-company" placeholder="Acme Corp" autocomplete="organization"></div>
           </div>
-          <div class="form-row">
-            <div class="fg">
-              <label class="fl" for="cf-email">Email <span class="fr-req">*</span></label>
-              <input class="fi" type="email" id="cf-email" placeholder="jane@example.com" autocomplete="email">
-            </div>
-            <div class="fg">
-              <label class="fl" for="cf-phone">Phone</label>
-              <input class="fi" type="tel" id="cf-phone" placeholder="+61 400 000 000" autocomplete="tel">
-            </div>
+          <div class="f-row">
+            <div class="fg"><label class="fl" for="cf-email">Email <span class="fr-req">*</span></label><input class="fi" type="email" id="cf-email" placeholder="jane@example.com" autocomplete="email"></div>
+            <div class="fg"><label class="fl" for="cf-phone">Phone</label><input class="fi" type="tel" id="cf-phone" placeholder="+61 400 000 000" autocomplete="tel"></div>
           </div>
           <div class="fg">
             <label class="fl" for="cf-service">I'm enquiring about</label>
             <select class="fi f-sel" id="cf-service">
               <option value="" disabled selected>Select...</option>
               <optgroup label="── Testing Services ──">
-                <option>AI Agent Testing</option>
-                <option>LLM Testing &amp; Evaluation</option>
-                <option>Workflow &amp; Automation Testing</option>
-                <option>Software QA</option>
-                <option>App Testing (iOS / Android / Web)</option>
-                <option>Security &amp; Pen Testing</option>
+                <option>AI Agent Testing</option><option>LLM Testing & Evaluation</option><option>Workflow & Automation Testing</option><option>Software QA</option><option>App Testing</option><option>Security & Pen Testing</option>
               </optgroup>
-              <optgroup label="── Cybersecurity Services ──">
-                <option>Agentic AI SOC</option>
-                <option>AI Adoption &amp; Build Program</option>
-                <option>Automation Workflow</option>
-                <option>Managed SOC / Incident Response</option>
-                <option>AI Threat Detection &amp; SIEM</option>
-                <option>Cloud Security (CSPM)</option>
+              <optgroup label="── Cybersecurity ──">
+                <option>Agentic AI SOC</option><option>AI Adoption & Build</option><option>Automation Workflow</option><option>Managed SOC</option><option>Cloud Security</option>
               </optgroup>
               <optgroup label="── Consumer AI Apps ──">
-                <option>TinyLearner</option>
-                <option>CoParent Share</option>
-                <option>Journaling App</option>
+                <option>TinyLearner</option><option>CoParent Share</option><option>Journaling App</option>
               </optgroup>
               <option>General Enquiry</option>
             </select>
           </div>
-          <div class="fg">
-            <label class="fl" for="cf-message">Message <span class="fr-req">*</span></label>
-            <textarea class="fi f-ta" id="cf-message" placeholder="Tell us about your project, goals, or question..."></textarea>
-          </div>
+          <div class="fg"><label class="fl" for="cf-message">Message <span class="fr-req">*</span></label><textarea class="fi f-ta" id="cf-message" placeholder="Tell us about your project, goals, or question..."></textarea></div>
           <div class="form-foot">
             <p class="form-priv">Your information is kept private and never shared with third parties.</p>
-            <button class="btn btn-grad" id="cf-submit" onclick="submitForm()">
+            <button class="btn-gold" id="cf-submit" onclick="submitForm()">
               <span id="cf-btn-text">Send Message →</span>
               <span id="cf-btn-load" style="display:none">Sending...</span>
             </button>
@@ -1307,61 +1328,21 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
 
 <!-- FOOTER -->
 <footer>
-  <div class="fi-wrap">
-    <div class="ft-top">
+  <div class="footer-inner">
+    <div class="footer-top">
       <div class="fb">
-        <a href="#" class="nav-logo" style="text-decoration:none">
-          <div class="x-icon">
-            <svg viewBox="0 0 18 18" fill="none">
-              <line x1="2" y1="2" x2="16" y2="16" stroke="white" stroke-width="3.2" stroke-linecap="round"/>
-              <line x1="16" y1="2" x2="2" y2="16" stroke="white" stroke-width="3.2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="wordmark">
-            <span class="wX">X</span><span class="wRest">finiti</span>
-          </div>
-        </a>
-        <p>Agentic AI, cybersecurity, and intelligent consumer software — built in Sydney, deployed worldwide.</p>
+        <div class="nav-logo">
+          <div class="nav-x"><svg viewBox="0 0 16 16" fill="none"><line x1="2" y1="2" x2="14" y2="14" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+          <div class="nav-wordmark"><span class="nav-x-letter">X</span><span class="nav-rest">finiti</span></div>
+        </div>
+        <p>AI Agents, cybersecurity, and intelligent software — built in Sydney, deployed worldwide.</p>
       </div>
-      <div class="fc">
-        <h5 class="hc">Cybersecurity</h5>
-        <ul>
-          <li><a href="#cybersecurity">Agentic AI SOC</a></li>
-          <li><a href="#cybersecurity">AI Adoption &amp; Build</a></li>
-          <li><a href="#cybersecurity">Automation Workflow</a></li>
-          <li><a href="#cybersecurity">Threat Detection</a></li>
-          <li><a href="#cybersecurity">Cloud Security</a></li>
-        </ul>
-      </div>
-      <div class="fc">
-        <h5 class="ht">Consumer Apps</h5>
-        <ul>
-          <li><a href="#apps">TinyLearner</a></li>
-          <li><a href="https://www.coparentshare.com" target="_blank" rel="noopener">CoParent Share ↗</a></li>
-          <li><a href="#apps">Journaling App</a></li>
-        </ul>
-      </div>
-      <div class="fc">
-        <h5 style="color:#a78bfa;border-color:rgba(167,139,250,0.3)">Testing</h5>
-        <ul>
-          <li><a href="#testing">AI Agent Testing</a></li>
-          <li><a href="#testing">LLM Testing</a></li>
-          <li><a href="#testing">Software QA</a></li>
-          <li><a href="#testing">App Testing</a></li>
-          <li><a href="#testing">Workflow Testing</a></li>
-        </ul>
-      </div>
-      <div class="fc">
-        <h5 class="hw">Company</h5>
-        <ul>
-          <li><a href="#about">About &amp; Founder</a></li>
-          <li><a href="#process">How We Work</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-        </ul>
-      </div>
+      <div class="fc"><h5 class="hg">Cybersecurity</h5><ul><li><a href="#cybersecurity">Agentic AI SOC</a></li><li><a href="#cybersecurity">AI Adoption</a></li><li><a href="#cybersecurity">Automation</a></li><li><a href="#cybersecurity">Threat Detection</a></li><li><a href="#cybersecurity">Cloud Security</a></li></ul></div>
+      <div class="fc"><h5 class="ht">AI Apps</h5><ul><li><a href="#apps">TinyLearner</a></li><li><a href="https://www.coparentshare.com" target="_blank" rel="noopener">CoParent Share ↗</a></li><li><a href="#apps">Journaling App</a></li></ul></div>
+      <div class="fc"><h5 class="hp">Testing</h5><ul><li><a href="#testing">AI Agent Testing</a></li><li><a href="#testing">LLM Testing</a></li><li><a href="#testing">Software QA</a></li><li><a href="#testing">App Testing</a></li><li><a href="#testing">Workflow Testing</a></li></ul></div>
+      <div class="fc"><h5>Company</h5><ul><li><a href="#about">About & Founder</a></li><li><a href="#process">How We Work</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
     </div>
-    <div class="ft-bot">
+    <div class="footer-bot">
       <p>© 2025 Xfiniti Technologies Pty Ltd · Sydney, Australia · <a href="https://www.xfiniti.com.au">xfiniti.com.au</a></p>
       <p>info@xfiniti.com.au · +61 427 172 689</p>
     </div>
@@ -1369,44 +1350,40 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
 </footer>
 
 <script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, {threshold:0.08});
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.rev').forEach(el => obs.observe(el));
 
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
-    });
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
   });
+});
 
-  function submitForm(){
-    const name    = document.getElementById('cf-name').value.trim();
-    const email   = document.getElementById('cf-email').value.trim();
-    const message = document.getElementById('cf-message').value.trim();
-    const company = document.getElementById('cf-company').value.trim();
-    const phone   = document.getElementById('cf-phone').value.trim();
-    const service = document.getElementById('cf-service').value;
-    const errEl   = document.getElementById('cf-error');
-    const btn     = document.getElementById('cf-submit');
-    errEl.style.display = 'none';
-    if(!name || !email || !message){ errEl.style.display='block'; return; }
-    btn.disabled = true;
-    document.getElementById('cf-btn-text').style.display = 'none';
-    document.getElementById('cf-btn-load').style.display = 'inline';
-    const subject = encodeURIComponent('Xfiniti Enquiry'+(service?' — '+service:''));
-    const body    = encodeURIComponent(
-      'Name: '+name+'\nEmail: '+email+'\n'+
-      (phone?'Phone: '+phone+'\n':'')+(company?'Company: '+company+'\n':'')+
-      (service?'Service: '+service+'\n':'')+'\nMessage:\n'+message
-    );
-    setTimeout(()=>{
-      window.location.href='mailto:info@xfiniti.com.au?subject='+subject+'&body='+body;
-      document.getElementById('contact-form').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    }, 500);
-  }
+function submitForm(){
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const message=document.getElementById('cf-message').value.trim();
+  const company=document.getElementById('cf-company').value.trim();
+  const phone=document.getElementById('cf-phone').value.trim();
+  const service=document.getElementById('cf-service').value;
+  const errEl=document.getElementById('cf-error');
+  const btn=document.getElementById('cf-submit');
+  errEl.style.display='none';
+  if(!name||!email||!message){errEl.style.display='block';return;}
+  btn.disabled=true;
+  document.getElementById('cf-btn-text').style.display='none';
+  document.getElementById('cf-btn-load').style.display='inline';
+  const subject=encodeURIComponent('Xfiniti Enquiry'+(service?' — '+service:''));
+  const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n'+(phone?'Phone: '+phone+'\n':'')+(company?'Company: '+company+'\n':'')+(service?'Service: '+service+'\n':'')+'\nMessage:\n'+message);
+  setTimeout(()=>{
+    window.location.href='mailto:info@xfiniti.com.au?subject='+subject+'&body='+body;
+    document.getElementById('contact-form').style.display='none';
+    document.getElementById('form-success').style.display='block';
+  },500);
+}
 </script>
 </body>
 </html>
