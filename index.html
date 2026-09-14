@@ -100,8 +100,8 @@ nav ul a{
 nav ul a:hover{color:var(--white);background:var(--line)}
 .nav-cyber{color:var(--amber)!important}
 .nav-cyber:hover{background:var(--amber-dim)!important}
-.nav-apps{color:var(--teal)!important}
-.nav-apps:hover{background:var(--teal-dim)!important}
+.nav-testing{color:#a78bfa!important}
+.nav-testing:hover{background:rgba(167,139,250,0.08)!important}
 .nav-cta{
   background:linear-gradient(135deg,var(--grad-blue),var(--grad-teal))!important;
   color:var(--navy)!important;font-weight:600!important;margin-left:0.5rem;
@@ -526,6 +526,7 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
   <ul>
     <li><a href="#cybersecurity" class="nav-cyber">Cybersecurity</a></li>
     <li><a href="#apps" class="nav-apps">AI Apps</a></li>
+    <li><a href="#testing" class="nav-testing">Testing</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -719,6 +720,193 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
     <div style="margin-top:2.25rem">
       <a href="#contact" class="btn btn-teal">Enquire About Our Apps →</a>
     </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     DIVISION 03 — TESTING
+══════════════════════════════════════════════ -->
+<style>
+--purple:#a78bfa;
+.nav-apps{color:var(--teal)!important}
+.nav-apps:hover{background:var(--teal-dim)!important}
+
+.test-bg{background:#0c0a1a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dbl-test{background:rgba(167,139,250,0.3)}
+.dbt-test{color:#a78bfa;border:1px solid rgba(167,139,250,0.3);background:rgba(167,139,250,0.08)}
+.ey-test{color:#a78bfa}
+
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.2);border-radius:8px;overflow:hidden;margin-bottom:2.5rem}
+.test-card{background:#0c0a1a;padding:1.85rem 1.7rem;transition:background 0.2s}
+.test-card:hover{background:#110e22}
+.test-card-icon{font-size:1.5rem;margin-bottom:0.8rem;display:block}
+.test-card h4{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
+.test-card p{font-size:0.83rem;color:var(--grey-1);line-height:1.68;font-weight:300;margin-bottom:0.85rem}
+.test-tag{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;padding:3px 8px;border-radius:3px;color:#a78bfa;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2)}
+
+.test-table{margin-bottom:2.5rem}
+.test-row{display:grid;grid-template-columns:72px 1fr 1fr;gap:1.75rem;padding:1.6rem 0;border-bottom:1px solid rgba(167,139,250,0.1);align-items:start}
+.test-row:first-of-type{border-top:1px solid rgba(167,139,250,0.1)}
+.ti{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:#a78bfa;padding-top:2px}
+.test-row h3{font-size:1.05rem;font-weight:700;color:var(--white);line-height:1.3}
+.test-row p{font-size:0.86rem;color:var(--grey-1);line-height:1.72;font-weight:300;margin-bottom:0.65rem}
+
+.test-pricing{
+  background:rgba(167,139,250,0.06);
+  border:1px solid rgba(167,139,250,0.2);
+  border-radius:8px;padding:2rem 2.25rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:2rem;flex-wrap:wrap;
+  margin-top:2rem;
+}
+.test-pricing-text h4{font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.4rem}
+.test-pricing-text p{font-size:0.88rem;color:var(--grey-1);font-weight:300;max-width:520px;line-height:1.65}
+
+@media(max-width:980px){
+  .test-grid{grid-template-columns:1fr}
+  .test-row{grid-template-columns:1fr}
+  .ti{display:none}
+}
+</style>
+
+<div class="div-banner">
+  <div class="dbl dbl-test"></div>
+  <span class="dbt dbt-test">Division 03 — Quality Assurance & Testing Services</span>
+  <div class="dbl dbl-test"></div>
+</div>
+
+<div class="test-bg">
+  <div class="sw" id="testing">
+    <p class="eyebrow ey-test reveal">QA · AI Testing · Software · Agents · LLMs</p>
+    <h2 class="title-lg reveal">Quality that ships<br>confidence, not just code.</h2>
+    <p class="lede lede-dark reveal">We provide comprehensive testing services across the full software and AI development lifecycle — from traditional functional QA through to cutting-edge AI Agent evaluation, LLM behaviour testing, and autonomous workflow validation. Every product we test is production-ready before it goes live.</p>
+
+    <!-- CORE TESTING CARDS -->
+    <div class="test-grid">
+
+      <div class="test-card reveal">
+        <span class="test-card-icon">🤖</span>
+        <h4>AI Agent Testing</h4>
+        <p>Rigorous evaluation of AI agent behaviour — goal completion, tool use accuracy, multi-step reasoning chains, error handling, and edge case resilience across real-world scenarios.</p>
+        <div class="tags"><span class="test-tag">Agent Eval</span><span class="test-tag">Goal Testing</span><span class="test-tag">Tool Use</span></div>
+      </div>
+
+      <div class="test-card reveal d1">
+        <span class="test-card-icon">🧠</span>
+        <h4>LLM Testing</h4>
+        <p>Systematic evaluation of large language model outputs — hallucination detection, prompt injection resistance, response consistency, safety alignment, and regression testing across model versions.</p>
+        <div class="tags"><span class="test-tag">Hallucination</span><span class="test-tag">Safety</span><span class="test-tag">Regression</span></div>
+      </div>
+
+      <div class="test-card reveal d2">
+        <span class="test-card-icon">⚙️</span>
+        <h4>Workflow & Automation Testing</h4>
+        <p>End-to-end validation of N8N, Zapier, Make, and custom automation pipelines — testing trigger conditions, data transformations, error paths, and integration handoffs across every node.</p>
+        <div class="tags"><span class="test-tag">N8N</span><span class="test-tag">Zapier</span><span class="test-tag">Make</span></div>
+      </div>
+
+      <div class="test-card reveal">
+        <span class="test-card-icon">📱</span>
+        <h4>App Testing</h4>
+        <p>Full-spectrum mobile and web app testing — functional, UI/UX, cross-device compatibility, accessibility, performance under load, and regression suites for iOS, Android, and web.</p>
+        <div class="tags"><span class="test-tag">iOS</span><span class="test-tag">Android</span><span class="test-tag">Web</span></div>
+      </div>
+
+      <div class="test-card reveal d1">
+        <span class="test-card-icon">💻</span>
+        <h4>Software Quality Assurance</h4>
+        <p>Traditional and modern software QA — unit, integration, system, and acceptance testing with automated CI/CD test pipelines, coverage reporting, and defect lifecycle management.</p>
+        <div class="tags"><span class="test-tag">Unit</span><span class="test-tag">Integration</span><span class="test-tag">CI/CD</span></div>
+      </div>
+
+      <div class="test-card reveal d2">
+        <span class="test-card-icon">🔒</span>
+        <h4>Security & Penetration Testing</h4>
+        <p>Vulnerability assessment and pen testing of web applications, APIs, and AI systems — OWASP Top 10 coverage, AI-specific attack vectors including prompt injection and model extraction.</p>
+        <div class="tags"><span class="test-tag">OWASP</span><span class="test-tag">Pen Test</span><span class="test-tag">API Security</span></div>
+      </div>
+
+    </div>
+
+    <!-- COMPREHENSIVE TABLE -->
+    <p class="eyebrow ey-test reveal" style="margin-bottom:1.5rem">Comprehensive Testing Services</p>
+
+    <div class="test-table">
+
+      <div class="test-row reveal">
+        <span class="ti">01</span>
+        <h3>Functional & Regression Testing</h3>
+        <div>
+          <p>Systematic validation that every feature works as specified — and keeps working as your codebase evolves. Automated regression suites catch regressions before they reach production.</p>
+          <div class="tags"><span class="test-tag">Selenium</span><span class="test-tag">Playwright</span><span class="test-tag">Cypress</span></div>
+        </div>
+      </div>
+
+      <div class="test-row reveal">
+        <span class="ti">02</span>
+        <h3>API & Integration Testing</h3>
+        <div>
+          <p>Contract testing, schema validation, and end-to-end integration verification across REST, GraphQL, and event-driven APIs — including third-party and AI model API integrations.</p>
+          <div class="tags"><span class="test-tag">Postman</span><span class="test-tag">REST</span><span class="test-tag">GraphQL</span></div>
+        </div>
+      </div>
+
+      <div class="test-row reveal">
+        <span class="ti">03</span>
+        <h3>Performance & Load Testing</h3>
+        <div>
+          <p>Stress testing, load simulation, and latency profiling to ensure your software and AI systems perform reliably at scale — including LLM inference latency benchmarking.</p>
+          <div class="tags"><span class="test-tag">k6</span><span class="test-tag">JMeter</span><span class="test-tag">Benchmarking</span></div>
+        </div>
+      </div>
+
+      <div class="test-row reveal">
+        <span class="ti">04</span>
+        <h3>AI Model Evaluation & Benchmarking</h3>
+        <div>
+          <p>Custom evaluation frameworks for AI models across accuracy, coherence, groundedness, toxicity, and task-specific performance — with structured benchmark reporting for stakeholders.</p>
+          <div class="tags"><span class="test-tag">Evals</span><span class="test-tag">RAGAS</span><span class="test-tag">Custom Benchmarks</span></div>
+        </div>
+      </div>
+
+      <div class="test-row reveal">
+        <span class="ti">05</span>
+        <h3>Prompt Engineering & Adversarial Testing</h3>
+        <div>
+          <p>Systematic testing of prompts for robustness, jailbreak resistance, and consistent output quality — including red-teaming AI systems for adversarial inputs and unexpected behaviour.</p>
+          <div class="tags"><span class="test-tag">Red Teaming</span><span class="test-tag">Jailbreak</span><span class="test-tag">Prompt QA</span></div>
+        </div>
+      </div>
+
+      <div class="test-row reveal">
+        <span class="ti">06</span>
+        <h3>UAT & Acceptance Testing</h3>
+        <div>
+          <p>Structured user acceptance testing with real stakeholders — scenario design, facilitation, defect capture, and sign-off documentation aligned to business requirements.</p>
+          <div class="tags"><span class="test-tag">UAT</span><span class="test-tag">BDD</span><span class="test-tag">Gherkin</span></div>
+        </div>
+      </div>
+
+      <div class="test-row reveal">
+        <span class="ti">07</span>
+        <h3>Accessibility & Compliance Testing</h3>
+        <div>
+          <p>WCAG 2.1 AA compliance testing for web and mobile apps, plus AI fairness and bias auditing to ensure your products meet both legal standards and ethical expectations.</p>
+          <div class="tags"><span class="test-tag">WCAG 2.1</span><span class="test-tag">Axe</span><span class="test-tag">Bias Audit</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PRICING CTA -->
+    <div class="test-pricing reveal">
+      <div class="test-pricing-text">
+        <h4>Flexible Pricing — Contact Us</h4>
+        <p>Our testing services are scoped and priced based on your project complexity, timeline, and coverage requirements. We offer fixed-scope engagements, retainer models, and embedded QA team options. Get in touch to discuss what's right for your project.</p>
+      </div>
+      <a href="#contact" class="btn btn-grad" style="white-space:nowrap;flex-shrink:0">Get a Testing Quote →</a>
+    </div>
+
   </div>
 </div>
 
@@ -1073,6 +1261,14 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
             <label class="fl" for="cf-service">I'm enquiring about</label>
             <select class="fi f-sel" id="cf-service">
               <option value="" disabled selected>Select...</option>
+              <optgroup label="── Testing Services ──">
+                <option>AI Agent Testing</option>
+                <option>LLM Testing &amp; Evaluation</option>
+                <option>Workflow &amp; Automation Testing</option>
+                <option>Software QA</option>
+                <option>App Testing (iOS / Android / Web)</option>
+                <option>Security &amp; Pen Testing</option>
+              </optgroup>
               <optgroup label="── Cybersecurity Services ──">
                 <option>Agentic AI SOC</option>
                 <option>AI Adoption &amp; Build Program</option>
@@ -1143,6 +1339,16 @@ footer{background:var(--navy-2);border-top:1px solid var(--line)}
           <li><a href="#apps">TinyLearner</a></li>
           <li><a href="https://www.coparentshare.com" target="_blank" rel="noopener">CoParent Share ↗</a></li>
           <li><a href="#apps">Journaling App</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5 style="color:#a78bfa;border-color:rgba(167,139,250,0.3)">Testing</h5>
+        <ul>
+          <li><a href="#testing">AI Agent Testing</a></li>
+          <li><a href="#testing">LLM Testing</a></li>
+          <li><a href="#testing">Software QA</a></li>
+          <li><a href="#testing">App Testing</a></li>
+          <li><a href="#testing">Workflow Testing</a></li>
         </ul>
       </div>
       <div class="fc">
